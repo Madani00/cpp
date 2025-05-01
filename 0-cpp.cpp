@@ -8,7 +8,7 @@ namespace second {
 }
 int main()
 {
-    int x = 0;
+    using namespace second;
 
-    std::cout << first::x; // 5
+    std::cout << x; // 10
 }

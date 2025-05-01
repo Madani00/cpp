@@ -16,4 +16,11 @@ int main()
 
     std::cout << first::x; // 5
 }
+
+# int main()
+# {
+#     using namespace second;
+
+#     std::cout << x; // 10
+# }
 ```
