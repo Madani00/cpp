@@ -1,9 +1,5 @@
-# cpp
+#include <iostream>
 
-## Namespace
-- 
-
-```bash
 namespace first {
     int x = 5;
 }
@@ -16,4 +12,3 @@ int main()
 
     std::cout << first::x; // 5
 }
-```
