@@ -1,14 +1,12 @@
 #include <iostream>
 
-namespace first {
-    int x = 5;
-}
-namespace second {
-    int x = 10;
-}
+
 int main()
 {
-    using namespace second;
+    using std::cout;
+    using std::string;
 
-    std::cout << x; // 10
+    string madani = "madani is my name";
+
+    cout << "what is " << madani << "\n"; // 10
 }

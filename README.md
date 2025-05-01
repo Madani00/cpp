@@ -1,7 +1,7 @@
 # cpp
 
 ## Namespace
-- 
+- you should avoid using it with `std::` cause this one has many entities 
 
 ```bash
 namespace first {
@@ -14,7 +14,7 @@ int main()
 {
     int x = 0;
 
-    std::cout << first::x; // 5
+    std::cout << first::x; # 5
 }
 
 # int main()
@@ -23,4 +23,13 @@ int main()
 
 #     std::cout << x; // 10
 # }
+```
+- better way to do it
+```bash
+int main()
+{
+    using std::cout;
+
+    cout << "hello world\n"; 
+}
 ```
