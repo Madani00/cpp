@@ -1,4 +1,4 @@
-aqqqqqqqqqqqqqaqaqqwsqqqqseaaoaaaaaaaaeqaaqq
+aqq
 
 # cpp
 
