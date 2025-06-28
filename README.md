@@ -1,4 +1,3 @@
-poeeqworreeeeeeeeeeeeewwwwwowqqq
 
 # cpp
 
@@ -49,3 +48,8 @@ int main()
     std::cout << "what is " << madani << "\n";
 }
 ```
+--- 
+## NOtes
+
+- why would ou pass it by reference if you don't wanna change the original value of the variable ??
+> Because if you pass by value useless copies get made that fill up memory 
