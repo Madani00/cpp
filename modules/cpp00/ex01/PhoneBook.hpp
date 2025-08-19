@@ -1,16 +1,23 @@
+
+
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
 #include <iostream>
+#include <sstream>
+#include "Contact.hpp"
 
 class PhoneBook
 {
     private:
-        void contacts[8];
+        Contact contacts[8];
+		int count = 0; // how many contacts currently saved (max 8)
+		int index = 0; //
     public:
-        int ADD();
-        int SEARCH();
-        void EXIT();
+
+        void add();
+        void search();
+		void printTable();
 };
 
 
