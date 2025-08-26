@@ -11,13 +11,14 @@ class PhoneBook
 {
     private:
         Contact contacts[8];
-		int count = 0; // how many contacts currently saved (max 8)
-		int index = 0; //
+		int count; // how many contacts currently saved (max 8)
+		int index; //
     public:
-
         void add();
         void search();
 		void printTable();
+		PhoneBook();
+		~PhoneBook();
 };
 
 

@@ -2,6 +2,7 @@
 #define CONTACT_H
 
 #include <iostream>
+#include <iomanip>
 
 class Contact
 {
@@ -13,8 +14,8 @@ class Contact
 		std::string darkestSecret;
     public:
         void setInfo(std::string f, std::string l, std::string n, std::string p, std::string d);
-        void getField(int index);
-        std::string getSummary(int field);
+        void getSpecific(int index);
+        std::string getField(int field);
 
 };
 

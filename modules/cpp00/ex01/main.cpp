@@ -7,6 +7,10 @@ std::string input;
 
 int main()
 {
+	// std::cout << "*******************************************\n";
+	// std::cout << "|            PHONE BOOK PROGRAM            |\n";
+	// std::cout << "*******************************************\n\n";
+
 	while (true) {
 		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
 		std::getline(std::cin, input);
