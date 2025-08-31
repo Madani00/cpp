@@ -2,14 +2,11 @@
 #include "PhoneBook.hpp"
 
 
-PhoneBook phonebook;
-std::string input;
 
 int main()
 {
-	// std::cout << "*******************************************\n";
-	// std::cout << "|            PHONE BOOK PROGRAM            |\n";
-	// std::cout << "*******************************************\n\n";
+	PhoneBook phonebook;
+	std::string input;
 
 	while (true) {
 		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";

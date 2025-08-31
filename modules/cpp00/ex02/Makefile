@@ -1,17 +1,17 @@
 NAME = megaphone
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98 
 RM = rm -f
 MK = make
 
-SRCS = megaphone.cpp
+SRCS = Account.cpp tests.cpp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
 
 $(NAME): $(OBJS)
-		$(CC) $(CFLAGS) $(OBJS) -std=c++98 -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@

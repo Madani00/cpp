@@ -1,7 +1,7 @@
 #include "PhoneBook.hpp"
 
-
-PhoneBook::PhoneBook(): count(0), index(0) // called initialization list
+// count will be initialized first cause its the first one in the class
+PhoneBook::PhoneBook(): index(0) , count { 0 } // called initialization list
 {
 	std::cout << "*******************************************\n";
 	std::cout << "|            PHONE BOOK PROGRAM            |\n";
@@ -12,7 +12,7 @@ PhoneBook::PhoneBook(): count(0), index(0) // called initialization list
 
 PhoneBook::~PhoneBook()
 {
-
+	std::cout << "\n\n\nbye see you later :)\n";
 }
 
 void PhoneBook::add()
