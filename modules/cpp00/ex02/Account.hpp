@@ -8,7 +8,7 @@
 // ************************************************************************** //
 
 
-#pragma once
+#pragma once // if your .hpp file gets included multiple times, the compiler will ignore duplicates and only process it once.
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
 
