@@ -16,17 +16,13 @@ std::string replace_content(std::string& file_contents, std::string& s1, std::st
 
 	// just added it cause i want the logic works under works without it
 	if (s1 == s2) {
-		std::cout << "the same the same\n";
 		return file_contents;
 	}
 	std::string result = "";
 	size_t pos = 0, found;
-	while ((found = file_contents.find(s1, pos)) != std::string::npos) {
-    		// Copy part before the found substring
+	while ((found = file_contents.find(s1, pos)) != (size_t)-1) { // std::string::npos // Various member functions of the String class return the default value of std::string::npos if a valid position or index for a substring is not found in the string.
 			result.append(file_contents, pos, found - pos);
-			// Add replacement
 			result += s2;
-			// Move past the replaced substring
 			pos = found + s1.length(); // .length() and .size() are the same
 	}
 	result.append(file_contents, pos, file_contents.length() - pos);
