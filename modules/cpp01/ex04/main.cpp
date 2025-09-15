@@ -2,20 +2,96 @@
 #include <vector>
 #include <bits/stdc++.h>
 
+// tests
+// ./exe filename hi
+// man
+// s1="abc", s2="" → remove occurrences
+// s1 equals s2
+// input "aaaa", s1="aa", s2="b" → expect "bb" (Overlapping)
+// s1 empty
 
-int main() {
 
-    // Open a file
-    std::ifstream file("text.txt");
-	std::string s;
 
-    // Write the string to the file
+std::string replace_content(std::string& file_contents, std::string& s1, std::string& s2) {
 
-	getline(file, s);
+	// just added it cause i want the logic works under works without it
+	if (s1 == s2) {
+		std::cout << "the same the same\n";
+		return file_contents;
+	}
+	std::string result = "";
+	size_t pos = 0, found;
+	while ((found = file_contents.find(s1, pos)) != std::string::npos) {
+    		// Copy part before the found substring
+			result.append(file_contents, pos, found - pos);
+			// Add replacement
+			result += s2;
+			// Move past the replaced substring
+			pos = found + s1.length(); // .length() and .size() are the same
+	}
+	result.append(file_contents, pos, file_contents.length() - pos);
+	return result;
+}
 
-	std::cout << s;
+int main(int ac, char **av)
+{
+	if (ac == 4) {
+		std::string s1 = av[2], s2 = av[3], filename = av[1];
 
-    return 0;
+		if (s1.empty()) {
+			std::cerr << "replacing an empty string would be undefined" << std::endl;
+			return 1;
+		}
+		std::ifstream infile(filename.c_str()); // .data() // not guaranteed to be null-terminated
+		if (!infile.is_open()) { // or (!infile) same
+			std::cerr << "Error: cannot open the file" << std::endl;
+			return 1;
+		}
+		// std::string content;
+		// if (!getline(infile, content))
+        // 	std::cerr << "Error: Failed to read data" << std::endl;
+		// std::cout << content;
+
+		std::string file_contents;
+		std::stringstream buffer;
+
+		// file_contents.assign((std::istreambuf_iterator<char>(infile)),
+		// 					  std::istreambuf_iterator<char>());
+
+		buffer << infile.rdbuf();
+		file_contents = buffer.str();
+
+		infile.close();
+
+		std::string result;
+		result = replace_content(file_contents, s1, s2);
+
+		// std::string result = "";                // std::string
+		// size_t pos = 0;                     // last position already copied
+		// size_t found;
+		// while (true){
+		// 	found = file_contents.find(s1, pos);
+		// 	if (found == std::string::npos) {
+		// 		// append remainder
+		// 		result.append(file_contents, pos, file_contents.size() - pos);
+		// 		break;
+		// 	}
+		// 	// append chunk before found occurrence
+		// 	result.append(file_contents, pos, found - pos);
+		// 	// append replacement
+		// 	result += s2;
+		// 	// advance pos past the found s1
+		// 	pos = found + s1.length();
+		// }
+		// std::cout  << result << std::endl;
+		std::string outf = filename + ".replace";
+		std::ofstream outfile(outf.c_str());
+		outfile << result;
+
+	} else {
+		std::cerr << "Error: arguments are missing" << std::endl;
+	}
+	return 0;
 }
 
 
