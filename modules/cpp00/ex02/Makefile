@@ -1,6 +1,6 @@
 NAME = megaphone
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 MK = make
 
@@ -13,7 +13,7 @@ all : $(NAME)
 $(NAME): $(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o : %.c
+%.o : %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 fclean:

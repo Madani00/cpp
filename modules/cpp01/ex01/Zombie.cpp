@@ -4,14 +4,17 @@ void Zombie::announce( void ) {
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-Zombie::Zombie(std::string name)
-{
+void Zombie::nameIt(std::string name) {
 	this->name = name;
+}
+Zombie::Zombie()
+{
+	// this->name = name;
 }
 
 Zombie::~Zombie()
 {
-	std::cout  << "local Zombie goes out of scope → destructor runs → zombie "
+	std::cout  << "→ zombie "
 			   << this->name
 			   << " dies"
 			   <<  std::endl;
