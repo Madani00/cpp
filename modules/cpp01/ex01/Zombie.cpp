@@ -7,9 +7,9 @@ void Zombie::announce( void ) {
 void Zombie::nameIt(std::string name) {
 	this->name = name;
 }
+
 Zombie::Zombie()
 {
-	// this->name = name;
 }
 
 Zombie::~Zombie()
