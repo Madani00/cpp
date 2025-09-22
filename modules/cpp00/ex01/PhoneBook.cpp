@@ -1,8 +1,13 @@
 #include "PhoneBook.hpp"
 
+
+#include <cstdlib>  // jodjfdf
+
 // count will be initialized first cause its the first one in the class
-PhoneBook::PhoneBook(): index(0) , count { 0 } // called initialization list
+PhoneBook::PhoneBook()  // called initialization list
 {
+	this->index = 0;
+	this->count = 0;
 	std::cout << "*******************************************\n";
 	std::cout << "|            PHONE BOOK PROGRAM            |\n";
 	std::cout << "*******************************************\n\n";
@@ -14,45 +19,65 @@ PhoneBook::~PhoneBook()
 {
 	std::cout << "\n\n\nbye see you later :)\n";
 }
+int only_spaces(std::string str) {
+
+	int i = 0;
+	while (str[i])
+	{
+		if (std::isspace(str[i]))
+			i++;
+		else
+			break;
+	}
+	if (str[i] == '\0')
+		return 1;
+	return 0;
+}
 
 void PhoneBook::add()
 {
 	std::string first, last, nick, phone, dark;
 
-	while (first.empty())
+	while (true)
 	{
 		std::cout << "Enter First Name: ";
-		std::getline(std::cin, first);
-		if (first.empty())
-			std::cout << "the field in empty!!!\n";
+		if (!std::getline(std::cin, first))
+			exit(1);
+		int found = only_spaces(first);
+		if (!found)
+			break;
 	}
-	while (last.empty())
+	while (true)
 	{
 		std::cout << "Enter Last Name: ";
 		std::getline(std::cin, last);
-		if (last.empty())
-			std::cout << "the field in empty!!!\n";
+		int found = only_spaces(last);
+		if (!found)
+			break;
 	}
-	while (nick.empty())
+	while (true)
 	{
 		std::cout << "Enter Nick Name: ";
 		std::getline(std::cin, nick);
-		if (nick.empty())
-			std::cout << "the field in empty!!!\n";
+		int found = only_spaces(nick);
+		if (!found)
+			break;
 	}
-	while (phone.empty())
+	while (true)
 	{
 		std::cout << "Enter Phone number: ";
 		std::getline(std::cin, phone);
-		if (phone.empty())
-			std::cout << "the field in empty!!!\n";
+		int found = only_spaces(phone);
+		if (!found)
+			break;
 	}
-	while (dark.empty())
+	while (true)
 	{
 		std::cout << "Enter Darkest secret: ";
 		std::getline(std::cin, dark);
-		if (dark.empty())
-			std::cout << "the field in empty!!!\n";
+		int found = only_spaces(dark);
+		if (!found)
+			break;
 	}
 	index = index % 8;
 	contacts[index].setInfo(first, last, nick, phone, dark);

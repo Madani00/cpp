@@ -18,9 +18,8 @@ class PhoneBook
         void search();
 		void printTable();
 		PhoneBook();
-		~PhoneBook();
+        ~PhoneBook();
 };
-
 
 
 #endif
