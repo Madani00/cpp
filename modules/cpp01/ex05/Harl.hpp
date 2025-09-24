@@ -1,7 +1,8 @@
-#ifndef HARL_H
-#define HARL_H
+#ifndef HARL_HPP
+#define HARL_HPP
 
 #include <iostream>
+#include <string>
 
 class Harl
 {
@@ -12,17 +13,9 @@ class Harl
         void error( void );
     public:
         void complain( std::string level );
-        Harl(/* args */);
+        Harl();
         ~Harl();
 };
-
-Harl::Harl(/* args */)
-{
-}
-
-Harl::~Harl()
-{
-}
 
 #endif
 

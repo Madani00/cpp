@@ -23,7 +23,7 @@ int main()
 {
 	std::string s = "HI THIS IS BRAIN";
 	std::string* stringPTR = &s;
-	std::string& stringREF = s; // -> alias for s (no extra memory, just another name)
+	std::string& stringREF = s; // and alias to the s variable
 
 	std::cout << "The memory address of the string variable: " << &s << std::endl;
 	std::cout << "The memory address held by stringPTR: " << stringPTR << std::endl;

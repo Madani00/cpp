@@ -11,8 +11,6 @@ PhoneBook::PhoneBook()  // called initialization list
 	std::cout << "*******************************************\n";
 	std::cout << "|            PHONE BOOK PROGRAM            |\n";
 	std::cout << "*******************************************\n\n";
-	// int count = 0;
-	// int index = 0;
 }
 
 PhoneBook::~PhoneBook()
@@ -155,5 +153,4 @@ void PhoneBook::search()
 		return ;
 	}
 	contacts[nmb].getSpecific(nmb);
-
 }
