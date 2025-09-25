@@ -1,8 +1,6 @@
 #include "PhoneBook.hpp"
 
 
-#include <cstdlib>  // jodjfdf
-
 // count will be initialized first cause its the first one in the class
 PhoneBook::PhoneBook()  // called initialization list
 {
@@ -32,6 +30,13 @@ int only_spaces(std::string str) {
 	return 0;
 }
 
+int  my_getline(std::string &str) {
+	std::getline(std::cin, str);
+	if (std::cin.eof() || std::cin.fail())
+		return 0;
+	return 1;
+}
+
 void PhoneBook::add()
 {
 	std::string first, last, nick, phone, dark;
@@ -39,8 +44,8 @@ void PhoneBook::add()
 	while (true)
 	{
 		std::cout << "Enter First Name: ";
-		if (!std::getline(std::cin, first))
-			exit(1);
+		if (!my_getline(first))
+			return ;
 		int found = only_spaces(first);
 		if (!found)
 			break;
@@ -48,7 +53,8 @@ void PhoneBook::add()
 	while (true)
 	{
 		std::cout << "Enter Last Name: ";
-		std::getline(std::cin, last);
+		if (!my_getline(last))
+			return ;
 		int found = only_spaces(last);
 		if (!found)
 			break;
@@ -56,7 +62,8 @@ void PhoneBook::add()
 	while (true)
 	{
 		std::cout << "Enter Nick Name: ";
-		std::getline(std::cin, nick);
+		if (!my_getline(nick))
+			return ;
 		int found = only_spaces(nick);
 		if (!found)
 			break;
@@ -64,7 +71,8 @@ void PhoneBook::add()
 	while (true)
 	{
 		std::cout << "Enter Phone number: ";
-		std::getline(std::cin, phone);
+		if (!my_getline(phone))
+			return ;
 		int found = only_spaces(phone);
 		if (!found)
 			break;
@@ -72,7 +80,8 @@ void PhoneBook::add()
 	while (true)
 	{
 		std::cout << "Enter Darkest secret: ";
-		std::getline(std::cin, dark);
+		if (!my_getline(dark))
+			return ;
 		int found = only_spaces(dark);
 		if (!found)
 			break;
@@ -140,8 +149,8 @@ void PhoneBook::search()
 	printTable();
 	std::cout << "\nTo see more infos select an index : ";
 	std::getline(std::cin, input);
-	std::stringstream ss(input);
-	ss >> nmb;
+	std::stringstream ss(input); // Create a stringstream object initialized with 'input'
+	ss >> nmb; // Extract an integer from the stringstream 
 	if (ss.fail())
 	{
 		std::cerr << "Is not a number!\n"; // cerr for errors man
@@ -152,5 +161,5 @@ void PhoneBook::search()
 		std::cerr << "Number is out of range!\n"; // cerr for errors man
 		return ;
 	}
-	contacts[nmb].getSpecific(nmb);
+	contacts[nmb].getSpecific();
 }

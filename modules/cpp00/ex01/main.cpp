@@ -9,8 +9,8 @@ int main()
 
 	while (true) {
 		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
-		std::getline(std::cin, input);
-
+		if (!my_getline(input))
+			return 1;
 		if (input == "ADD")
 			phonebook.add();
 		else if (input == "SEARCH")

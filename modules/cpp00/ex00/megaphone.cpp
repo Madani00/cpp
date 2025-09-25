@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 void megaphone_print(std::string str) {
 
     for (size_t j = 0; j < str.length(); j++)
@@ -18,5 +17,5 @@ int main(int ac, char **av)
     {
         megaphone_print(av[i]);
     }
-    std::cout << std::endl; 
+    std::cout << std::endl;
 }

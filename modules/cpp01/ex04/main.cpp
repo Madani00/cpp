@@ -10,23 +10,33 @@
 // input "aaaa", s1="aa", s2="b" → expect "bb" (Overlapping)
 // s1 empty
 
+// first logic
+// std::string replace_content(std::string &file_contents, std::string& s1, std::string& s2) {
 
+// 	std::string result = "";
+// 	size_t pos = 0, found;
+// 	while ((found = file_contents.find(s1, pos)) != std::string::npos) { 
+// 			result.append(file_contents, pos, found - pos);
+// 			result += s2;
+// 			pos = found + s1.length(); // .length() and .size() are the same
+// 	}
+// 	result.append(file_contents, pos, file_contents.length() - pos);
+// 	return result;
+// }
 
-std::string replace_content(std::string& file_contents, std::string& s1, std::string& s2) {
+std::string replace_content(std::string file_contents, std::string& s1, std::string& s2) {
 
 	// just added it cause i want the logic works under works without it
 	if (s1 == s2) {
 		return file_contents;
 	}
-	std::string result = "";
 	size_t pos = 0, found;
-	while ((found = file_contents.find(s1, pos)) != (size_t)-1) { // std::string::npos // Various member functions of the String class return the default value of std::string::npos if a valid position or index for a substring is not found in the string.
-			result.append(file_contents, pos, found - pos);
-			result += s2;
-			pos = found + s1.length(); // .length() and .size() are the same
+	while ((found = file_contents.find(s1, pos)) != std::string::npos) { // Various member functions of the String class return the default value of std::string::npos if a valid position or index for a substring is not found in the string.
+			file_contents.erase(found, s1.size());
+			file_contents.insert(found, s2.c_str());
+			pos = found + s2.length();
 	}
-	result.append(file_contents, pos, file_contents.length() - pos);
-	return result;
+	return file_contents;
 }
 
 int main(int ac, char **av)
@@ -62,24 +72,7 @@ int main(int ac, char **av)
 		std::string result;
 		result = replace_content(file_contents, s1, s2);
 
-		// std::string result = "";                // std::string
-		// size_t pos = 0;                     // last position already copied
-		// size_t found;
-		// while (true){
-		// 	found = file_contents.find(s1, pos);
-		// 	if (found == std::string::npos) {
-		// 		// append remainder
-		// 		result.append(file_contents, pos, file_contents.size() - pos);
-		// 		break;
-		// 	}
-		// 	// append chunk before found occurrence
-		// 	result.append(file_contents, pos, found - pos);
-		// 	// append replacement
-		// 	result += s2;
-		// 	// advance pos past the found s1
-		// 	pos = found + s1.length();
-		// }
-		// std::cout  << result << std::endl;
+
 		std::string outf = filename + ".replace";
 		std::ofstream outfile(outf.c_str());
 		outfile << result;

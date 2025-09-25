@@ -1,5 +1,3 @@
-
-
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
@@ -11,8 +9,8 @@ class PhoneBook
 {
     private:
         Contact contacts[8];
-		int count; // how many contacts currently saved (max 8)
-		int index; //
+		int count;
+		int index;
     public:
         void add();
         void search();
@@ -20,6 +18,8 @@ class PhoneBook
 		PhoneBook();
         ~PhoneBook();
 };
+
+int  my_getline(std::string &str);
 
 
 #endif

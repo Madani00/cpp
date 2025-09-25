@@ -9,9 +9,8 @@ void Contact::setInfo(std::string f, std::string l, std::string n, std::string p
 	darkestSecret = d;
 }
 
-void Contact::getSpecific(int index)
+void Contact::getSpecific()
 {
-	(void)index;
 	std::cout << "first name : " << firstName << "\n";
 	std::cout << "last name : " << lastName << "\n";
 	std::cout << "nick name : " << nickname << "\n";
@@ -29,34 +28,3 @@ std::string Contact::getField(int field)
 		return (nickname);
 	return (NULL);
 }
-// void Contact::getSpecific(int index) // i left it here
-// {
-// 	std::string ff;
-// 	std::string ll;
-// 	std::string nn;
-
-// 	if (firstName.length() > 10)
-//     	ff = firstName.substr(0, 9) + ".";
-// 	else
-//     	ff = firstName;
-// 	if (lastName.length() > 10)
-//     	ll = lastName.substr(0, 9) + ".";
-// 	else
-//     	ll = lastName;
-// 	if (nickname.length() > 10)
-//     	nn = nickname.substr(0, 9) + ".";
-// 	else
-//     	nn = nickname;
-
-// 	std::cout << "|-------------------------------------------|\n";
-// 	std::cout << "|" << std::setw(10) << "index"
-//               << "|" << std::setw(10) << "first name"
-//               << "|" << std::setw(10) << "last name"
-//               << "|" << std::setw(10) << "nick name"
-//               << "|\n";
-// 	std::cout << "|" << std::setw(10) << index
-//               << "|" << std::setw(10) << ff
-//               << "|" << std::setw(10) << ll
-//               << "|" << std::setw(10) << nn
-//               << "|\n";
-// }

@@ -14,7 +14,7 @@ class Contact
 		std::string darkestSecret;
     public:
         void setInfo(std::string f, std::string l, std::string n, std::string p, std::string d);
-        void getSpecific(int index);
+        void getSpecific();
         std::string getField(int field);
 
 };
