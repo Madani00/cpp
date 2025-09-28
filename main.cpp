@@ -1,51 +1,20 @@
 #include <iostream>
 
+#include <iostream>
 #include <string>
 
 
-class ResourceLocker {
-public:
-    ResourceLocker(const std::string& name) : name_(name) {
-        std::cout << "[" << name_ << "] Constructor called. Resource is now active. ✨\n";
-    }
-    ~ResourceLocker() {
-        std::cout << "[" << name_ << "] Destructor called. Resource is released/closed. 🗑️\n";
-    }
+int main()
+{
+    double floating_point_value = 0.3768; // Example floating-point value
+    int fractional_bits = 15;
+    int fixed_point_value = static_cast<int>(floating_point_value * (1 << fractional_bits) + 0.5); // Add 0.5 for rounding
+    // fixed_point_value = (int)(0.3768 * 32768 + 0.5)
 
-    void doWork() const {
-        std::cout << "[" << name_ << "] Doing some work while the resource is active.\n";
-    }
-
-private:
-    std::string name_;
-};
-
-// 2. The main function to demonstrate scope
-void demonstrate_destructor_scope() {
-    std::cout << "--- START of demonstrate_destructor_scope() function ---\n";
-
-    // A. Object with the full function scope
-    ResourceLocker obj_a("Obj A (Full Scope)");
-
-    // Start an INNER SCOPE using curly braces { }
-    // {
-    //     std::cout << "\n--- START of INNER SCOPE ---\n";
-        
-    //     // B. Object whose life is restricted to this inner scope
-    //     ResourceLocker obj_b("Obj B (Inner Scope)");
-    //     obj_b.doWork();
-
-    //     std::cout << "--- END of INNER SCOPE ---\n";
-    // } // <-- When the code hits this closing brace, obj_b is destroyed.
-
-    // This code runs *after* obj_b has been destroyed, but *before* obj_a is destroyed.
-    std::cout << "\n[Middle of Function] Back in the main function scope.\n";
-    obj_a.doWork();
-
-    std::cout << "--- END of demonstrate_destructor_scope() function ---\n";
-} // <-- When the code hits this final closing brace, obj_a is destroyed.
-
-int main() {
-    demonstrate_destructor_scope();
-    return 0;
+    // double fixed_point_value = 1234.4321; 
+    // int fractional_bits = 8;
+    // double floating_point_value = static_cast<double>(fixed_point_value) / (1 << fractional_bits);
+    // In Q15, 1 << 15 is 32768.
+    // So, floating_point_value = 12345 / 32768.0
+    std::cout << fixed_point_value << std::endl;
 }

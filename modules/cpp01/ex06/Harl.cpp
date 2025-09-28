@@ -8,6 +8,34 @@ Harl::~Harl()
 {
 }
 
+void Harl::complain( std::string level ) {
+    
+    std::string array[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+    int index = 0;
+    while (index < 4)
+    {
+        if (array[index] == level)
+        {
+            break;
+        }
+        index++;
+    }
+    switch (index) { 
+        case 1:
+            Harl::debug();
+        case 2:
+            Harl::info();
+        case 3:
+            Harl::warning();
+        case 4:
+            Harl::error();
+        default:
+            std::cout << "[ Probably complaining about insignificant problems ]" << std::endl; 
+    }
+}
+
+
 void Harl::debug( void ) {
     std::cout << "[ DEBUG ]" << std::endl;
     std::cout <<  "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger"  << std::endl;
