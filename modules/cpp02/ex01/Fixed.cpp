@@ -57,5 +57,5 @@ float Fixed::toFloat( void ) const {
 }
 
 int Fixed::toInt( void ) const {
-    return roundf(this->value / (1 << this->factBits));
+    return this->value / (1 << this->factBits); // roundf 
 }
