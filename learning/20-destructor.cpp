@@ -4,20 +4,20 @@
 
 
 class ResourceLocker {
-public:
-    ResourceLocker(const std::string& name) : name_(name) {
-        std::cout << "[" << name_ << "] Constructor called. Resource is now active. ✨\n";
-    }
-    ~ResourceLocker() {
-        std::cout << "[" << name_ << "] Destructor called. Resource is released/closed. 🗑️\n";
-    }
+    public:
+        ResourceLocker(const std::string& name) : name_(name) {
+            std::cout << "[" << name_ << "] Constructor called. Resource is now active. ✨\n";
+        }
+        ~ResourceLocker() {
+            std::cout << "[" << name_ << "] Destructor called. Resource is released/closed. 🗑️\n";
+        }
 
-    void doWork() const {
-        std::cout << "[" << name_ << "] Doing some work while the resource is active.\n";
-    }
+        void doWork() const {
+            std::cout << "[" << name_ << "] Doing some work while the resource is active.\n";
+        }
 
-private:
-    std::string name_;
+    private:
+        std::string name_;
 };
 
 // 2. The main function to demonstrate scope

@@ -124,7 +124,6 @@ int Account::checkAmount() const {
     return this->_amount;
 }
 
-
 void Account::displayStatus() const {
     Account::_displayTimestamp();
     std::cout << "index:" << this->_accountIndex

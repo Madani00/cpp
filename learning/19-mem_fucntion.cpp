@@ -25,12 +25,10 @@
 class MyClass {
 public:
     int value;
-    int add(int a , int b)
-    {
+    int add(int a , int b) {
         return (a + b);
     }
-    void hello(void)
-    {
+    void hello(void) {
         std::cout << "hello" << std::endl;
     }
 };
@@ -38,7 +36,6 @@ public:
 int main() {
     
     void (MyClass::*fn)(void);
-
     fn = &MyClass::hello;
 
     MyClass test;
@@ -49,20 +46,20 @@ int main() {
     return (0);
 }
 
-// member function of an array
-class Demo {
-    public:
-        void one()  { std::cout << "one\n"; }
-        void two()  { std::cout << "two\n"; }
-        void three(){ std::cout << "three\n"; }
-};
-int main() {
-    void (Demo::*ptr[])() = { &Demo::one, &Demo::two, &Demo::three };
+// // member function of an array
+// class Demo {
+//     public:
+//         void one()  { std::cout << "one\n"; }
+//         void two()  { std::cout << "two\n"; }
+//         void three(){ std::cout << "three\n"; }
+// };
+// int main() {
+//     void (Demo::*ptr[])() = { &Demo::one, &Demo::two, &Demo::three };
     
-    Demo d;
+//     Demo d;
 
-    for (int i = 0; i < 3; ++i) {
-        (d.*ptr[i])();    // call each method in order
-    }
-    return 0;
-}
+//     for (int i = 0; i < 3; ++i) {
+//         (d.*ptr[i])();    // call each method in order
+//     }
+//     return 0;
+// }

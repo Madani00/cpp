@@ -11,7 +11,7 @@ class Fixed
         Fixed();
         ~Fixed();
         Fixed(const Fixed& other); // Copy constructor
-        Fixed& operator=(const Fixed& other); 
+        Fixed& operator=(const Fixed& other);  //  Copy assignment operator
         int getRawBits( void ) const;
         void setRawBits( int const raw );
 };

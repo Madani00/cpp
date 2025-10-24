@@ -3,8 +3,7 @@
 #include <bits/stdc++.h>
 
 // tests
-// ./exe filename hi
-// man
+// ./exe filename '' hi          (test newline)
 // s1="abc", s2="" → remove occurrences
 // s1 equals s2
 // input "aaaa", s1="aa", s2="b" → expect "bb" (Overlapping)
@@ -32,9 +31,10 @@ std::string replace_content(std::string file_contents, std::string& s1, std::str
 	}
 	size_t pos = 0, found;
 	while ((found = file_contents.find(s1, pos)) != std::string::npos) { // Various member functions of the String class return the default value of std::string::npos if a valid position or index for a substring is not found in the string.
-			file_contents.erase(found, s1.size());
-			file_contents.insert(found, s2.c_str());
-			pos = found + s2.length();
+		file_contents.erase(found, s1.size());
+		file_contents.insert(found, s2.c_str());
+		pos = found + s2.length();
+		std::cerr << pos << std::endl;
 	}
 	return file_contents;
 }
@@ -44,10 +44,10 @@ int main(int ac, char **av)
 	if (ac == 4) {
 		std::string s1 = av[2], s2 = av[3], filename = av[1];
 
-		if (s1.empty()) {
-			std::cerr << "replacing an empty string would be undefined" << std::endl;
-			return 1;
-		}
+		// if (s1.empty()) {
+		// 	std::cerr << "replacing an empty string would be undefined" << std::endl;
+		// 	return 1;
+		// }
 		std::ifstream infile(filename.c_str()); // .data() // not guaranteed to be null-terminated
 		if (!infile.is_open()) { // or (!infile) same
 			std::cerr << "Error: cannot open the file" << std::endl;

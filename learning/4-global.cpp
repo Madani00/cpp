@@ -9,5 +9,6 @@ int main()
 
     std::cout << value << "\n"; // 2
     // works just find even with spaces
-    std :: cout << ::value << "\n"; // 5
+
+    std     ::       cout << ::value << "\n"; // 5
 }

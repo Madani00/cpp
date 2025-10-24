@@ -41,8 +41,7 @@ void PhoneBook::add()
 {
 	std::string first, last, nick, phone, dark;
 
-	while (true)
-	{
+	while (true) {
 		std::cout << "Enter First Name: ";
 		if (!my_getline(first))
 			return ;
@@ -50,8 +49,7 @@ void PhoneBook::add()
 		if (!found)
 			break;
 	}
-	while (true)
-	{
+	while (true) {
 		std::cout << "Enter Last Name: ";
 		if (!my_getline(last))
 			return ;
@@ -59,8 +57,7 @@ void PhoneBook::add()
 		if (!found)
 			break;
 	}
-	while (true)
-	{
+	while (true) {
 		std::cout << "Enter Nick Name: ";
 		if (!my_getline(nick))
 			return ;
@@ -68,8 +65,7 @@ void PhoneBook::add()
 		if (!found)
 			break;
 	}
-	while (true)
-	{
+	while (true) {
 		std::cout << "Enter Phone number: ";
 		if (!my_getline(phone))
 			return ;
@@ -77,8 +73,7 @@ void PhoneBook::add()
 		if (!found)
 			break;
 	}
-	while (true)
-	{
+	while (true) {
 		std::cout << "Enter Darkest secret: ";
 		if (!my_getline(dark))
 			return ;
@@ -141,23 +136,27 @@ void PhoneBook::search()
 	std::string input;
 	int nmb;
 
-	if (!count)
-	{
+	if (!count) {
 		std::cout << "the phone book is empty :(\n";
 		return ;
 	}
 	printTable();
 	std::cout << "\nTo see more infos select an index : ";
 	std::getline(std::cin, input);
+	for (size_t i = 0; i < input.size(); i++)
+	{
+		if (!(input[i] >= '0' && input[i] <= '9')) {
+			std::cerr << "Is not a real number!\n";
+			return ;
+		}
+	}
 	std::stringstream ss(input); // Create a stringstream object initialized with 'input'
 	ss >> nmb; // Extract an integer from the stringstream 
-	if (ss.fail())
-	{
+	if (ss.fail()) {
 		std::cerr << "Is not a number!\n"; // cerr for errors man
 		return ;
 	}
-	else if (!(nmb >= 0 && nmb < count))
-	{
+	else if (!(nmb >= 0 && nmb < count)) {
 		std::cerr << "Number is out of range!\n"; // cerr for errors man
 		return ;
 	}

@@ -3,18 +3,51 @@
 #include <iostream>
 #include <string>
 
+#include <cmath> 
+
+
+
+
+class Fixed
+{
+private:
+    int _fractionalBits;
+    int _rawBits = 8;
+public:
+    int toFloat( void ) const;
+    int toInt( void ) const ;
+    Fixed(float v);
+    Fixed(int v);
+    ~Fixed();
+};
+
+Fixed::Fixed(float v)
+{
+    this->_fractionalBits = v;
+}
+Fixed::Fixed(int v)
+{
+    this->_fractionalBits = v;
+}
+Fixed::~Fixed()
+{
+}
+
+
+
+int Fixed::toInt( void ) const {
+    // int _fractionalBits = Fixed::toFloat();
+    return ( _fractionalBits >> 8 );
+}
+
+int Fixed::toFloat( void ) const {
+    return round(this->_fractionalBits * (1 << 8));
+    // return ( (float)this->_fractionalBits / (float)(1 << 8) ); 
+}
 
 int main()
 {
-    double floating_point_value = 0.3768; // Example floating-point value
-    int fractional_bits = 15;
-    int fixed_point_value = static_cast<int>(floating_point_value * (1 << fractional_bits) + 0.5); // Add 0.5 for rounding
-    // fixed_point_value = (int)(0.3768 * 32768 + 0.5)
+    Fixed a(42.42f);
 
-    // double fixed_point_value = 1234.4321; 
-    // int fractional_bits = 8;
-    // double floating_point_value = static_cast<double>(fixed_point_value) / (1 << fractional_bits);
-    // In Q15, 1 << 15 is 32768.
-    // So, floating_point_value = 12345 / 32768.0
-    std::cout << fixed_point_value << std::endl;
+    std::cout << "a is " << a.toFloat() << " as integer" << std::endl;
 }

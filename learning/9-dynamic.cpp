@@ -26,20 +26,15 @@ int main()
     std::cout << "enter the size to allocate: " ;
 
     std::cin >> size;
-
     ptr = new char[size];
-
     for (size_t i = 0; i < size; i++)
     {
         std::cout << "enter the grades:  " ;
         std::cin >> ptr[i];
     }
-    
     for (size_t i = 0; i < size; i++)
     {
         std::cout << ptr[i] << " ";
     }
-
     delete[] ptr;   // always free memory
-
 }
