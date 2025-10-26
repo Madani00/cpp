@@ -3,7 +3,6 @@
 
 #include <cmath>
 #include <iostream>
-#include <math.h>
 
 
 class Fixed
@@ -28,6 +27,3 @@ std::ostream& operator<<(std::ostream &o, const Fixed &ex); // why it works here
 
 
 #endif
-
-
-
