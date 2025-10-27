@@ -17,7 +17,7 @@ Fixed &Fixed::operator=(const Fixed& other) {
     if (this != &other) {
         value = other.value;
     }
-    this->getRawBits();
+    this->getRawBits(); // 
     return *this;
 }
 
@@ -100,21 +100,27 @@ Fixed Fixed::operator -(const Fixed& object) {
 }
 
 Fixed Fixed::operator *(const Fixed& object) {
-    return Fixed(this->value * object.value);
+    Fixed result;
+    result.setRawBits((this->value * object.value) / (1 << this->factBits));
+    return result;
 }
 
 Fixed Fixed::operator /(const Fixed& object) {
-    return Fixed(this->value / object.value);
+    Fixed result;
+    result.setRawBits((this->value / object.value) * (1 << this->factBits)); // mmm * why it works
+    return result;
+    // return Fixed(this->value / object.value);
 }
 
 //  The 4 increment/decrement: x++, ++x, x--, --x
-void Fixed::operator ++() {
+Fixed& Fixed::operator ++() {
     this->value += 1;
+    return *this;
 }
 
-void Fixed::operator --() {
-
+Fixed& Fixed::operator --() {
     this->value -= 1;
+    return *this;
 }
 
 Fixed Fixed::operator ++(int) {
@@ -135,3 +141,17 @@ Fixed Fixed::operator --(int) {
 Fixed& Fixed::max(Fixed& object1, Fixed& object2) {
     return (object1 > object2 ? object1 : object2);
 }
+
+const Fixed& Fixed::max(const Fixed& object1, const Fixed& object2)  {
+    return (object1 > object2 ? object1 : object2);
+}
+
+Fixed& Fixed::min(Fixed& object1, Fixed& object2) {
+    return (object1 > object2 ? object2 : object1);
+}
+
+const Fixed& Fixed::min(const Fixed& object1, const Fixed& object2) {
+    return (object1 > object2 ? object2 : object1);
+}
+
+

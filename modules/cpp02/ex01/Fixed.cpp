@@ -22,10 +22,10 @@ Fixed &Fixed::operator=(const Fixed& other) {
     return *this;
 }
 
-std::ostream& operator<<(std::ostream &o, const Fixed &ex)
+std::ostream& operator<<(std::ostream &outstream, const Fixed &object)
 {
-    o <<  ex.toFloat();
-    return (o);
+    outstream <<  object.toFloat();
+    return (outstream);
 }
 
 Fixed::~Fixed()

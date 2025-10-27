@@ -12,10 +12,12 @@ class Fixed
         int value;
         static const int factBits; 
     public:
+        // Orthodox Canonical Form
         Fixed();
         Fixed(const Fixed& other); // Copy constructor
         Fixed& operator=(const Fixed& other);
         ~Fixed();
+
         Fixed(const int integer);
         Fixed(const float float_p);
         int getRawBits( void ) const;
@@ -24,7 +26,7 @@ class Fixed
         int toInt( void ) const;
 };
     
-std::ostream& operator<<(std::ostream &o, const Fixed &ex); // why it works here
+std::ostream& operator<<(std::ostream &outstream, const Fixed &object); // why it works here
 
 
 #endif

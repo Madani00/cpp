@@ -6,6 +6,7 @@ void Zombie::announce( void ) {
 
 void Zombie::nameIt(std::string name) {
 	this->name = name;
+	name.operator=(name);
 }
 
 Zombie::Zombie()

@@ -33,11 +33,14 @@ class Fixed
         Fixed operator -(const Fixed& object);
         Fixed operator *(const Fixed& object);
         Fixed operator /(const Fixed& object);
-        void operator ++();
-        void operator --();   // prefix , --x, you add int to the compiler see the differences
+        Fixed& operator ++();
+        Fixed& operator --();   // prefix , --x, you add int to the compiler see the differences
         Fixed operator ++(int); // postfix return by value (copy)
         Fixed operator --(int);
         static Fixed& max(Fixed& object1, Fixed& object2);
+        static const Fixed& max(const Fixed& object1, const Fixed& object2);
+        static Fixed& min(Fixed& object1, Fixed& object2);
+        static const Fixed& min(const Fixed& object1, const Fixed& object2);
 };
     
 std::ostream& operator<<(std::ostream &outstream, const Fixed &object); // why it works here
