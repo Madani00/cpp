@@ -21,10 +21,10 @@ Fixed &Fixed::operator=(const Fixed& other) {
     return *this;
 }
 
-std::ostream& operator<<(std::ostream &o, const Fixed &ex)
+std::ostream& operator<<(std::ostream &outstream, const Fixed &object)
 {
-    o <<  ex.toFloat();
-    return (o);
+    outstream <<  object.toFloat();
+    return (outstream);
 }
 
 Fixed::~Fixed()
@@ -57,4 +57,81 @@ float Fixed::toFloat( void ) const {
 
 int Fixed::toInt( void ) const {
     return this->value / (1 << this->factBits); // roundf 
+}
+
+
+
+// 6 comparison operators: >, <, >=, <=, ==, and !=
+bool Fixed::operator >(const Fixed& object) const {
+    return (this->value > object.value);
+}
+
+bool Fixed::operator <(const Fixed& object) const {
+    return (this->value < object.value);
+}
+
+bool Fixed::operator >=(const Fixed& object) const {
+    return (this->value >= object.value);
+}
+
+bool Fixed::operator <=(const Fixed& object) const {
+    return (this->value <= object.value);
+}
+
+bool Fixed::operator ==(const Fixed& object) const {
+    return (this->value == object.value);
+}
+
+bool Fixed::operator !=(const Fixed& object) const {
+    return (this->value != object.value);
+}
+
+// The 4 arithmetic operators: +, -, *, and /
+Fixed Fixed::operator +(const Fixed& object) {
+    Fixed result;
+    result.setRawBits(this->value + object.value);
+    return result;
+}
+
+Fixed Fixed::operator -(const Fixed& object) {
+    Fixed result;
+    result.setRawBits(this->value - object.value);
+    return result;
+}
+
+Fixed Fixed::operator *(const Fixed& object) {
+    return Fixed(this->value * object.value);
+}
+
+Fixed Fixed::operator /(const Fixed& object) {
+    return Fixed(this->value / object.value);
+}
+
+//  The 4 increment/decrement: x++, ++x, x--, --x
+void Fixed::operator ++() {
+    this->value += 1;
+}
+
+void Fixed::operator --() {
+
+    this->value -= 1;
+}
+
+Fixed Fixed::operator ++(int) {
+    Fixed current(*this);
+
+    this->value += 1;
+    return current;
+}
+
+Fixed Fixed::operator --(int) {
+    Fixed current(*this);
+
+    this->value -= 1;
+    return current;
+}
+
+// public overloaded member functions 
+Fixed& Fixed::max(Fixed& object1, Fixed& object2) {
+    return (object1 > object2 ? object1 : object2);
 }
