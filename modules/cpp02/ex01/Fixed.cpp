@@ -28,6 +28,8 @@ std::ostream& operator<<(std::ostream &outstream, const Fixed &object)
     return (outstream);
 }
 
+
+
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
@@ -57,5 +59,5 @@ float Fixed::toFloat( void ) const {
 }
 
 int Fixed::toInt( void ) const {
-    return this->value / (1 << this->factBits); // roundf 
+    return this->value / (1 << this->factBits);
 }

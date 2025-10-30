@@ -3,7 +3,6 @@
 
 #include <cmath>
 #include <iostream>
-#include <math.h>
 
 
 class Fixed
@@ -23,10 +22,12 @@ class Fixed
         int getRawBits( void ) const;
         void setRawBits( int const raw );
         float toFloat( void ) const;
-        int toInt( void ) const;
+        int toInt( void ) const;   
+        friend std::ostream& operator<<(std::ostream &outstream, const Fixed &object); // why it works here
+
 };
     
-std::ostream& operator<<(std::ostream &outstream, const Fixed &object); // why it works here
+// std::ostream& operator<<(std::ostream &outstream, const Fixed &object); // why it works here
 
 
 #endif

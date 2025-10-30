@@ -107,9 +107,8 @@ Fixed Fixed::operator *(const Fixed& object) {
 
 Fixed Fixed::operator /(const Fixed& object) {
     Fixed result;
-    result.setRawBits((this->value / object.value) * (1 << this->factBits)); // mmm * why it works
+    result.setRawBits((this->value / object.value) * (1 << this->factBits));
     return result;
-    // return Fixed(this->value / object.value);
 }
 
 //  The 4 increment/decrement: x++, ++x, x--, --x
@@ -124,15 +123,13 @@ Fixed& Fixed::operator --() {
 }
 
 Fixed Fixed::operator ++(int) {
-    Fixed current(*this);
-
-    this->value += 1;
+    Fixed current = *this;
+    ++(*this);
     return current;
 }
 
 Fixed Fixed::operator --(int) {
     Fixed current(*this);
-
     this->value -= 1;
     return current;
 }

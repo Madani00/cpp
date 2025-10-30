@@ -6,8 +6,6 @@
 #include <cmath> 
 
 
-
-
 class Fixed
 {
 private:
@@ -50,4 +48,10 @@ int main()
     Fixed a(42.42f);
 
     std::cout << "a is " << a.toFloat() << " as integer" << std::endl;
+
+    (std::cout << myBook) << " and " << otherBook;
+    (std::cout) << " and " << otherBook;
+
+
+
 }
