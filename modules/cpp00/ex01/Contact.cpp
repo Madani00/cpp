@@ -11,7 +11,7 @@ void Contact::setInfo(std::string f, std::string l, std::string n, std::string p
 
 void Contact::getSpecific()
 {
-	std::cout << "first name : " << firstName << "\n";
+	std::cout << "first name : \n" << firstName ;
 	std::cout << "last name : " << lastName << "\n";
 	std::cout << "nick name : " << nickname << "\n";
 	std::cout << "Phone number : " << phoneNumber << "\n";

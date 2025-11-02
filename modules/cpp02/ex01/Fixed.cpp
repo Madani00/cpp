@@ -50,7 +50,7 @@ Fixed::Fixed(const int integer) {
 
 Fixed::Fixed(const float float_p) {
     std::cout << "Float constructor called" << std::endl;
-    this->value = roundf(float_p * (1 << this->factBits)); // floating --> fixed
+    this->value = roundf(float_p * (1 << this->factBits)); 
 }
 
 

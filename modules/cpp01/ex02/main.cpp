@@ -1,23 +1,7 @@
 #include <string>
 #include <iostream>
 
-// void byptr(std::string *s)
-// {
-// 	*s += " to be alive";
-// }
 
-// void byConstPtr(std::string const * s) {
-// 	std::cout << *s << std::endl;
-// }
-
-// void byRef(std::string & s)
-// {
-// 	s += " to be alive";
-// }
-
-// void byConstRef(std::string const & s) {
-// 	std::cout << s << std::endl;
-// }
 
 int main()
 {

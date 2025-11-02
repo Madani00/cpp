@@ -1,13 +1,13 @@
 #include <stdio.h>
+#include <string.h>
 
 
 int main()
-{
-    // 10860 / 256 = 42.421875
-    // float ff = 
+{ 
+    
+    char c = 'a';
+    int i = strlen(&c);
 
-    // that is why we did (float)this->value
-    printf("%f \n", 2560.0 / 256);  
-
+    printf("%d \n", i);
     return 0;
 }
