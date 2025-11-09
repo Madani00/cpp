@@ -9,8 +9,11 @@ class DiamondTrap : public ScavTrap, public FragTrap
     private:
         std::string name;
     public:
+        DiamondTrap();
         DiamondTrap(std::string name);
         ~DiamondTrap();
+
+        void attack(const std::string& target);
         // special function
         void whoAmI();
 };

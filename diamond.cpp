@@ -22,7 +22,9 @@ class SubDerived : public Derived1, public Derived2 {
 
 int main() 
 {
-    SubDerived ob;
-    ob.baseMethod(); // member found by ambiguous name lookup, to fix it add virtual
+    // SubDerived ob;
+    // ob.baseMethod(); // member found by ambiguous name lookup, to fix it add virtual
+    Derived1 der1;
 
+    std::cout << sizeof(der1) << std::endl;
 }

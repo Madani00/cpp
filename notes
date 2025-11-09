@@ -1,0 +1,3 @@
+- child called the parent constructor fist cause i may need to use methods or attiributes from the parent, destructor its the opposite
+- shallow copy, deep, ex01 in c04 just copy the value do not copy the address , cause you may encounter double free, or ...
+- there is a trick to copy the value without copying there a gain : *(onj,other) = *(class.obj);

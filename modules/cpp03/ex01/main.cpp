@@ -16,7 +16,6 @@ int main() {
     obj2.attack("human");
     obj2.guardGate();
     obj2.takeDamage(100);
-    obj2.takeDamage(60);
     obj2.takeDamage(5);
 
     ClapTrap ob3;

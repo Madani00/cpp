@@ -3,11 +3,16 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
     public:
-        FragTrap(std::string name);
+        // Orthodox Canonical Form
+        FragTrap();
+        FragTrap(const FragTrap& other); 
+        FragTrap& operator=(const FragTrap& other);
         ~FragTrap();
+
+        FragTrap(std::string name);
         void highFivesGuys(void);
 };
 
