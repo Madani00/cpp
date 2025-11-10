@@ -3,6 +3,26 @@
 Cat::Cat()
 {
     this->type = "Cat";
+    std::cout << this->type << " Default constructor called" << std::endl;
+}
+
+Cat::~Cat()
+{
+    std::cout << this->type << " Destructor called" << std::endl;
+}
+
+Cat::Cat(const Cat& other) {
+    std::cout << "Copy constructor called" << std::endl;
+    *this = other;
+}
+
+Cat &Cat::operator=(const Cat& other)
+{
+    std::cout << "Copy assignment operator called" << std::endl;
+    if (this != &other) {
+        type = other.type;
+    }
+    return *this;
 }
 
 void Cat::makeSound() const {

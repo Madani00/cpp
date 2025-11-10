@@ -1,10 +1,13 @@
 #ifndef CAT_HPP
 #define CAT_HPP
 
-#include "Animal.hpp"
+#include "AnimalA.hpp"
+#include "Brain.hpp"
 
-class Cat : public Animal
+class Cat : public AnimalA
 {
+    private:
+        Brain *brain;
     public:
         // Orthodox Canonical Form
         Cat();
@@ -14,6 +17,7 @@ class Cat : public Animal
 
         void makeSound() const;
         std::string getType() const;
+        void getideas() const;
 };
 
 #endif
