@@ -25,9 +25,6 @@ AnimalA &AnimalA::operator=(const AnimalA& other)
     return *this;
 }
 
-// void AnimalA::makeSound() const {
-//     std::cout << "🔇 NO sound of AnimalA 🔇" << std::endl;
-// }
 
 std::string AnimalA::getType() const {
     return this->type;

@@ -7,7 +7,7 @@
 class Brain
 {
     public:
-        std::string ideas[100];             //      make it private later 
+        std::string ideas[100];
         
         // Orthodox Canonical Form
         Brain();

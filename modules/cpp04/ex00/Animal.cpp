@@ -8,7 +8,7 @@ Animal::Animal()
 
 Animal::~Animal()
 {
-    std::cout << this->type << " Destructor called" << std::endl;
+    std::cout << "Animal Destructor called" << std::endl;
 }
 
 Animal::Animal(const Animal& other) {

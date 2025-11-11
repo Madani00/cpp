@@ -5,10 +5,7 @@ Cat::Cat()
     this->type = "Cat";
     std::cout << this->type << " Default constructor called" << std::endl;
     this->brain = new Brain();
-    for (size_t i = 0; i < 100; i++)
-    {
-        this->brain->ideas[i] = "cat hungry";
-    }
+    this->brain->ideas[0] = "cat hungry";
 }
 
 Cat::~Cat()
@@ -29,19 +26,13 @@ Cat &Cat::operator=(const Cat& other)
 {
     std::cout << "Cat Copy assignment operator called" << std::endl;
     if (this != &other) {
-        for (size_t i = 0; i < 100; i++)
-        {
-            this->brain->ideas[i] = other.brain->ideas[i];
-        }
+        this->brain->ideas[0] = other.brain->ideas[0];
     }
     return *this;
 }
 
-void Cat::getideas() const {           // delete it later 
-    for (size_t i = 0; i < 100; i++)
-    {
-        std::cout << this->brain->ideas[i] << std::endl;
-    }
+void Cat::getideas() const {       
+    std::cout << this->brain->ideas[0] << std::endl;
 }
 
 void Cat::makeSound() const {
