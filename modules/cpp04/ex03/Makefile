@@ -3,7 +3,7 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 MK = make
-SRCS = main.cpp Cat.cpp Dog.cpp AnimalA.cpp Brain.cpp
+SRCS = AMateria.cpp  Character.cpp  Cure.cpp  Ice.cpp  ICharacter.cpp  IMateriaSource.cpp  main.cpp  MateriaSource.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)

@@ -1,6 +1,8 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
@@ -20,6 +22,15 @@ int main()
     delete meta;
     delete dog;
     delete cat;
+
+    // // To ensure you understood how it works,
+    // WrongAnimal* meta = new  WrongAnimal();
+    // WrongAnimal* cat = new WrongCat();
+
+    // meta->makeSound();
+    // cat->makeSound();
+    // delete meta;
+    // delete cat;
 
 return 0;
 }

@@ -17,9 +17,7 @@ Cat::~Cat()
 Cat::Cat(const Cat& other) {
     std::cout << "Cat Copy constructor called" << std::endl;
     this->brain = new Brain();
-    // *(this->brain) = *(other.brain); // this line calles the Brain Copy assignment 
-    // this->brain = other.brain; // this line cause , core dumped, invalid free
-    *(this) = (other); // works, calls: Cat Copy assignment
+    *(this->brain) = *(other.brain); // this line calles the Brain Copy assignment 
 }
 
 Cat &Cat::operator=(const Cat& other)

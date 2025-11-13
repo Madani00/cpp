@@ -1,7 +1,7 @@
 #include <iostream>
 
 void megaphone_print(std::string str) {
-
+    
     for (size_t j = 0; j < str.length(); j++)
     {
         std::cout << (char)toupper(str[j]);
