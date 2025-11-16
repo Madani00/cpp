@@ -23,7 +23,7 @@ MateriaSource::~MateriaSource()
     std::cout << "MateriaSource Destructor called" << std::endl;
 }
 
-MateriaSource::MateriaSource(const MateriaSource& other) { //  : IMateriaSource(other)  mmm
+MateriaSource::MateriaSource(const MateriaSource& other) {
     std::cout << "MateriaSource Copy constructor called" << std::endl;
     *this = other;
 }
@@ -31,9 +31,7 @@ MateriaSource::MateriaSource(const MateriaSource& other) { //  : IMateriaSource(
 MateriaSource &MateriaSource::operator=(const MateriaSource& other)
 {
     std::cout << "MateriaSource Copy assignment operator called" << std::endl;
-    if (this != &other) {
-        
-    }
+    (void)other;
     return *this;
 }
 
@@ -57,7 +55,7 @@ AMateria* MateriaSource::createMateria(std::string const & type) {
     int i = 0;
     while (i < 4)
     {
-        if (this->storage[i]->getType() == type) {
+        if (this->storage[i] && this->storage[i]->getType() == type) {
             return this->storage[i]->clone();
         }
         i++;

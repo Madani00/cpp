@@ -1,7 +1,7 @@
 
 #pragma once
 
-class ICharacter;               //          mmmmmmmmmmmmm
+class ICharacter;              
 
 #include <iostream>
 #include "ICharacter.hpp"

@@ -2,7 +2,6 @@
 
 
 #include "AMateria.hpp"
-// #include "ICharacter.hpp"
 #include "IMateriaSource.hpp"
 #include <iostream>
 

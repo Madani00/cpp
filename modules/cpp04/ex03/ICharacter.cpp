@@ -18,7 +18,6 @@ ICharacter::ICharacter(const ICharacter& other) {
 ICharacter &ICharacter::operator=(const ICharacter& other)
 {
     std::cout << "ICharacter Copy assignment operator called" << std::endl;
-    if (this != &other) {
-    }
+    (void)other;
     return *this;
 }

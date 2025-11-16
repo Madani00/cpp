@@ -1,18 +1,18 @@
 #pragma once
 
-
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 #include <iostream>
 
-// Optional: A mechanism to track "dropped" Materia to prevent memory leaks 
-// (e.g., a simple array or list of AMateria* that need to be deleted later).
+#define MAX_CONTAINER 500
+
 class Character : public ICharacter
 {
     private:
         std::string name;
         AMateria* inventory[4];
-        AMateria* container[4];
+        AMateria* container[MAX_CONTAINER];
+        static int index;
     public:
         // Orthodox Canonical Form
         Character();
@@ -25,7 +25,5 @@ class Character : public ICharacter
         void equip(AMateria* m);
         void unequip(int idx);
         void use(int idx, ICharacter& target);
-
-
 
 };

@@ -18,9 +18,7 @@ Ice::Ice(const Ice& other) {
 Ice &Ice::operator=(const Ice& other)
 {
     std::cout << "Ice Copy assignment operator called" << std::endl;
-    if (this != &other) {
-        type = other.type;
-    }
+    (void)other;
     return *this;
 }
 

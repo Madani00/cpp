@@ -18,7 +18,6 @@ IMateriaSource::IMateriaSource(const IMateriaSource& other) {
 IMateriaSource &IMateriaSource::operator=(const IMateriaSource& other)
 {
     std::cout << "IMateriaSource Copy assignment operator called" << std::endl;
-    if (this != &other) {
-    }
+    (void)other;
     return *this;
 }

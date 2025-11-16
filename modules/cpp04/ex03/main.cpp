@@ -5,28 +5,6 @@
 #include "MateriaSource.hpp"
 #include "Character.hpp"
 
-
-int main()
-{
-    IMateriaSource* src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    ICharacter* me = new Character("me");
-    AMateria* tmp;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    ICharacter* bob = new Character("bob");
-    me->use(0, *bob);
-    me->use(1, *bob);
-
-    delete bob;
-    delete me;
-    delete src;
-    return 0;
-}
-
 // int main() {
 
 // // ------------------------ first test ----------------------------------
@@ -60,8 +38,8 @@ int main()
     
 //         // does nothing
 //         character->equip(NULL); 
-//         character->equip(cure->clone()); //  delete cure->clone() inside ,if inventory is full
-//         character->equip(cure->clone()); //  delete cure->clone() inside ,if inventory is full
+//         character->equip(cure->clone()); //  delete cure->clone inside ,if inventory is full
+//         character->equip(cure->clone()); //  delete cure->clone inside ,if inventory is full
         
 //         character->use(0, *character);
 //         character->use(1, *character);
@@ -84,9 +62,9 @@ int main()
 //         src->learnMateria(new Ice());
 //         src->learnMateria(new Ice());
 //         src->learnMateria(new Ice());
-//         src->learnMateria(new Ice()); // storage[4] is full, do nothing and delete Ice()
+//         src->learnMateria(new Ice()); // storage[4] is full, do nothing and delete ice
     
-//         src->createMateria("cure"); // returns NULL, storage has only Ice()
+//         src->createMateria("cure"); // returns null storage has only ice
 //         AMateria* srcIceClone = src->createMateria("ice");
     
 //         srcIceClone->use(*character);
@@ -96,5 +74,37 @@ int main()
 //         delete src;
 //     }
 
+//     // // --------- test deep copy in Character class -------------
+//     // Character ha("madani");
+//     // std::cout << ha.getName() << '\n';
+
+//     // ha.equip(new Ice());  
+//     // ha.equip(new Cure()); 
+
+//     // Character kk(ha); // copy constructor
+//     // std::cout << kk.getName() << '\n';
+    
+//     // kk.use(0, kk);
+//     // kk.use(1, kk);
+//     // kk.use(2, kk);
+//     // kk.use(3, kk);
+
 //   return 0;
 // }
+
+int main() {
+  Character character("name");
+
+  AMateria* ice = new Ice();
+
+  character.equip(new Cure());
+  character.equip(new Cure());
+  character.equip(new Cure());
+  character.equip(ice);
+  
+  character.unequip(0);
+  
+  character.equip(ice);
+
+
+}
