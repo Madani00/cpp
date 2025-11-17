@@ -42,19 +42,30 @@ Character::~Character()
 {
     AMateria* deleted[MAX_CONTAINER];
     int count = 0;
-
+    bool check;
     for (int k = 0; k < 4; ++k) {
+        check = false;
         if (this->inventory[k] != NULL) {
-            deleted[count++] = this->inventory[k];
-            delete this->inventory[k];
-            this->inventory[k] = NULL;
+            // deleted[count++] = this->inventory[k];
+            for (int j = 0; j < count; ++j) {
+                if (deleted[j] == this->inventory[k]) { 
+                    check = true; 
+                    break; 
+                }
+            }
+            if (!check) {
+                std::cout << "enter 11 \n" << std::endl;
+                deleted[count++] = this->inventory[k];
+                delete this->inventory[k];
+            }
         }
+        this->inventory[k] = NULL; 
     }
     for (int k = 0; k < Character::index && k < MAX_CONTAINER; k++) {
         AMateria* ptr = this->container[k];
         if (ptr == NULL) 
             continue;
-        bool check = false;
+        check = false;
         for (int j = 0; j < count; ++j) {
             if (deleted[j] == ptr) { 
                 check = true; 
