@@ -54,7 +54,6 @@ Character::~Character()
                 }
             }
             if (!check) {
-                std::cout << "enter 11 \n" << std::endl;
                 deleted[count++] = this->inventory[k];
                 delete this->inventory[k];
             }
