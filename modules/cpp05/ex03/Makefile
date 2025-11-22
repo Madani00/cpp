@@ -1,9 +1,10 @@
 NAME = exe 
 CC = c++
-# CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 MK = make
-SRCS = main.cpp Fixed.cpp
+SRCS = AForm.cpp main.cpp RobotomyRequestForm.cpp Bureaucrat.cpp \
+	PresidentialPardonForm.cpp  ShrubberyCreationForm.cpp Intern.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
@@ -15,7 +16,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		$(RM) $(OBJS)
+		$(RM) $(OBJS) *shrubbery
 
 fclean: clean
 		$(RM) $(NAME)
