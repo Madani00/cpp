@@ -1,16 +1,20 @@
 #include <iostream>
 
-tell me the real difference when using static cast and reinterpret cast in c++ in detail
 int main() {
 
-int* a = new int();
-void* b = static_cast<void*>(a);
-int* c = static_cast<int*>(b);
+// static_cast relies on compile-time type information.
+// The C++ standard explicitly defines conversions between data pointers and void*.
+    int* a = new int();
+    *a = 42;
+    void* b = static_cast<void*>(a);
+    // char b = static_cast<char>(a); // 'int *' --> 'char' not allowed
+    int* c = static_cast<int*>(b);
+    std::cout << *c << std::endl;
 
 
-int* a = new int();
-void* b = reinterpret_cast<void*>(a);
-int* c = reinterpret_cast<int*>(b);
-
+// tells the compiler: "Shut up and treat these bits as this new type."
+    // int* a = new int();
+    // void* b = reinterpret_cast<void*>(a);
+    // int* c = reinterpret_cast<int*>(b);
 
 }
