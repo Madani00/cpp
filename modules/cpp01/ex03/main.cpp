@@ -14,12 +14,8 @@ int main()
 		club.setType("some other type of club");
 		bob.attack();
 
-		// club.setType("wah way");
-		// bob.attack();
 	}
 	{
-		//Weapon club = Weapon("crude spiked club");
-		// Weapon club = NULL;
 		HumanB jim("Jim");
 		//jim.setWeapon(club);
 		jim.attack();

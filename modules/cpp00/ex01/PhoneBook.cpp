@@ -89,7 +89,7 @@ void PhoneBook::add()
 	std::cout << "\nContact added successfully!\n" << std::endl;
 }
 
-void PhoneBook::printTable() // i left it here
+void PhoneBook::printTable()
 {
 	std::string ff;
 	std::string ll;
@@ -153,11 +153,11 @@ void PhoneBook::search()
 	std::stringstream ss(input); // Create a stringstream object initialized with 'input'
 	ss >> nmb; // Extract an integer from the stringstream 
 	if (ss.fail()) {
-		std::cerr << "Is not a number!\n"; // cerr for errors man
+		std::cerr << "Is not a number!\n";
 		return ;
 	}
 	else if (!(nmb >= 0 && nmb < count)) {
-		std::cerr << "Number is out of range!\n"; // cerr for errors man
+		std::cerr << "Number is out of range!\n";
 		return ;
 	}
 	contacts[nmb].getSpecific();

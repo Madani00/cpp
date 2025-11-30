@@ -26,7 +26,7 @@ class Fixed
 
 };
     
-std::ostream& operator<<(std::ostream &outstream, const Fixed &object); // why it works here
+std::ostream& operator<<(std::ostream &outstream, const Fixed &object);
 
 #endif
 

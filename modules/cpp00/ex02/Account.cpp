@@ -18,7 +18,6 @@ void Account::_displayTimestamp() {
     std::cout << buf;
 }
 
-// Private default constructor (declared private in header)
 Account::Account() :
 	_accountIndex(0),
 	_amount(0),
@@ -28,20 +27,6 @@ Account::Account() :
     // private: not used by tests, but defined to satisfy the declaration
 }
 
-// Account::Account( int initial_deposit ) :
-//     _accountIndex(Account::_nbAccounts),
-// 	_amount(initial_deposit),
-// 	_nbDeposits(0),
-// 	_nbWithdrawals(0)
-// {
-// 	Account::_totalAmount += initial_deposit;
-// 	Account::_displayTimestamp();
-
-// 	std::cout << "index:" << (*this)._accountIndex << ";amount:" << this->_amount
-// 	 << ";created" << std::endl;
-// }
-
-//
 Account::Account( int initial_deposit ) :
     _accountIndex(Account::_nbAccounts),
     _amount(initial_deposit),
@@ -57,7 +42,7 @@ Account::Account( int initial_deposit ) :
 Account::~Account() {
     Account::_displayTimestamp();
     std::cout << "index:" << this->_accountIndex << ";amount:" << this->_amount << ";closed" << std::endl;
-    // Depending on desired semantics we can decrement _nbAccounts:
+
     Account::_nbAccounts -= 1;  // or   --Account::_nbAccounts; optional
 }
 

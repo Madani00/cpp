@@ -22,14 +22,15 @@ void Harl::complain( std::string level ) {
         index++;
     }
     switch (index) { 
-        case 1:
+        case 0:
             Harl::debug();
-        case 2:
+        case 1:
             Harl::info();
-        case 3:
+        case 2:
             Harl::warning();
-        case 4:
+        case 3:
             Harl::error();
+            break;
         default:
             std::cout << "[ Probably complaining about insignificant problems ]" << std::endl; 
     }
