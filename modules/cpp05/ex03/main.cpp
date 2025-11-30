@@ -7,13 +7,31 @@
 
 int main()
 {
-    Intern someRandomIntern;
-    AForm* rrf;
-    rrf = someRandomIntern.makeForm("robotomsdfy", "Bender");
-    if (!rrf)
-        return 1;
-    std::cout << rrf->getName() << std::endl;
+    Intern stagiaire;
+    AForm *form;
 
+    form = stagiaire.makeForm("robotomy", "Bender");
+    if (form)
+        delete form;
+    std::cout << std::string(40, '=')  << std::endl;
+
+
+    form = stagiaire.makeForm("presidential", "regret");
+    if (form)
+        delete form;
+    std::cout << std::string(40, '=')  << std::endl;
     
+    form = stagiaire.makeForm("shrubbery", "gardener");
+    if (form)
+        delete form;
+    std::cout << std::string(40, '=')  << std::endl;
+    
+    form = stagiaire.makeForm("unknown form", "nobody");
+    if (form)
+        delete form;
+    std::cout << std::string(40, '=')  << std::endl;
+
+    // Intern hi;
+
     return 0;
 }

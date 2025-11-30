@@ -14,6 +14,11 @@ class Intern
         AForm* shrubbery(const std::string &target);
     public:
         AForm *makeForm(const std::string& name, const std::string&form);
+        // Orthodox Canonical AForm
+        Intern();
+        Intern(const Intern& other); 
+        Intern& operator=(const Intern& other);
+        ~Intern();
 };
 
 

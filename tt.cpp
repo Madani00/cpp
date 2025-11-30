@@ -1,25 +1,37 @@
 
-
-
 #include <iostream>
 
-class Animal {
-public:
-    virtual void speak() { std::cout << "Animal sound\n"; }
-protected:
-    int v = 10;
+class tt
+{
+    private:
+        // int num;
+    public:
+        tt(int nmb);
+        ~tt();
+        int num;
 };
 
-class Dog : public Animal {
-public:
-    void speak() { std::cout << "Woof!\n"; }
-    
-};
+tt::tt(int num)
+{
+    if (num > 0)
+        this->num = num;
+    else
+        throw "NUmber is negative";
+}
+
+tt::~tt()
+{
+}
+
 
 int main() {
-    Animal* a = new Dog();
-    a->speak(); // ✅ prints "Woof!"
     
-    delete a;
+    try {
+        tt basic(-2);
+    }
+    catch(char const * e) {
+        std::cout << "error " << e << std::endl;
+    }
+
 
 }
