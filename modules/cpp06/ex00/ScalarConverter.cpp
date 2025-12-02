@@ -31,12 +31,11 @@ void printConversions(double d)
     //  std::numeric_limits<unsigned char>::max() > 255 // prevent potive values
     // d = 0.0 / 0.0;
     std::cout << "char: ";
-
     if (std::isnan(d) || std::isinf(d) || d < std::numeric_limits<char>::min() || d > std::numeric_limits<unsigned char>::max()) {
         std::cout << "impossible" << std::endl;
     } else {
         char c = static_cast<char>(d);
-        if (std::isprint((c))) // static_cast<unsigned char>
+        if (std::isprint((c)))
             std::cout << "'" << c << "'" << std::endl;
         else
             std::cout << "Non displayable" << std::endl;
@@ -56,11 +55,12 @@ void printConversions(double d)
     else {
         float f = static_cast<float>(d);
         std::stringstream oss;
-        if (std::floor(f) == f)
+        if (std::floor(f) == f) { // 42.0 or 45
             oss << std::fixed << std::setprecision(1) << f << "f";
+        }
         else
-            oss << std::setprecision(6) << f << "f";
-        std::cout << oss.str() << std::endl;
+            oss << std::setprecision(8) << f << "f";
+        std::cout << oss.str() << std::endl; 
     }
 
     std::cout << "double: ";
@@ -73,7 +73,7 @@ void printConversions(double d)
         if (std::floor(d) == d)
             oss << std::fixed << std::setprecision(1) << d;
         else
-            oss << std::setprecision(6) << d;
+            oss << std::setprecision(8) << d;
         std::cout << oss.str() << std::endl;
     }
 }
@@ -115,7 +115,8 @@ bool checkValid(const std::string &literal) {
 
     if (literal[i] == '-' || literal[i] == '+')
         i++;
-    else if (literal[i] == '.' || literal[strSize - 1] != 'f')
+    if (literal[i] == '.' || literal[strSize - 1] == '.' || \
+        (literal[strSize - 1] != 'f' && !std::isdigit(literal[strSize - 1])))
         return true;
     while (i < strSize)
     {
@@ -134,7 +135,7 @@ void ScalarConverter::convert(std::string literal)
     // if (literal.empty())
     //     return;
 
-    if (literal.length() == 1 && !std::isdigit(literal[0])) { // static_cast<unsigned char>
+    if (literal.length() == 1 && !std::isdigit(literal[0])) {
         printConversions(static_cast<double>(literal[0]));
         return;
     }

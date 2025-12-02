@@ -9,10 +9,7 @@
 #include <cctype>
 
 
-// enum {
-//     ,
 
-// }
 class ScalarConverter
 {
     private:
@@ -21,7 +18,6 @@ class ScalarConverter
         ScalarConverter(const ScalarConverter& other); 
         ScalarConverter& operator=(const ScalarConverter& other);
     public:
-
         static void convert(std::string literal);
 };
 

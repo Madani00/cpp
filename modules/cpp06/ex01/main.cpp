@@ -2,7 +2,6 @@
 
 int main() {
 
-
     Data *data = new Data();
     data->Id = 42;
 
