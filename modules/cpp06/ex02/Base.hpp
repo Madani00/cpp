@@ -5,10 +5,8 @@
 #include <ctime>
 
 
-
 class Base
 {
     public:
-        virtual ~Base(); // virtual very important for dynamic_cast
-
+        virtual ~Base();
 };

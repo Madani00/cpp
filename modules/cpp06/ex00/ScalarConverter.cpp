@@ -25,13 +25,9 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter& other)
     return *this;
 }
 
-void printConversions(double d)
-{
-    // -128 < std::numeric_limits<char>::min() // prevent negative value
-    //  std::numeric_limits<unsigned char>::max() > 255 // prevent potive values
-    // d = 0.0 / 0.0;
+void printChar(double d) {
     std::cout << "char: ";
-    if (std::isnan(d) || std::isinf(d) || d < std::numeric_limits<char>::min() || d > std::numeric_limits<unsigned char>::max()) {
+    if (d < std::numeric_limits<char>::min() || d > std::numeric_limits<char>::max()) {
         std::cout << "impossible" << std::endl;
     } else {
         char c = static_cast<char>(d);
@@ -40,45 +36,45 @@ void printConversions(double d)
         else
             std::cout << "Non displayable" << std::endl;
     }
+}
 
+void printInt(double d) {
     std::cout << "int: ";
-    if (std::isnan(d) || std::isinf(d) || d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max())
+    if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max())
         std::cout << "impossible" << std::endl;
     else
         std::cout << static_cast<int>(d) << std::endl;
+}
 
+void printFloat(double d) {
     std::cout << "float: ";
-    if (std::isnan(d))
-        std::cout << "nanf" << std::endl;
-    else if (std::isinf(d))
-        std::cout << (d < 0 ? "-inff" : "inff") << std::endl;
-    else {
-        float f = static_cast<float>(d);
-        std::stringstream oss;
-        if (std::floor(f) == f) { // 42.0 or 45
-            oss << std::fixed << std::setprecision(1) << f << "f";
-        }
-        else
-            oss << std::setprecision(8) << f << "f";
-        std::cout << oss.str() << std::endl; 
+    float f = static_cast<float>(d);
+    if (std::floor(f) == f) {
+        std::cout << std::fixed << std::setprecision(1);
+        std::cout << f << "f" << std::endl;
     }
-
-    std::cout << "double: ";
-    if (std::isnan(d))
-        std::cout << "nan" << std::endl;
-    else if (std::isinf(d))
-        std::cout << (d < 0 ? "-inf" : "inf") << std::endl;
     else {
-        std::stringstream oss;
-        if (std::floor(d) == d)
-            oss << std::fixed << std::setprecision(1) << d;
-        else
-            oss << std::setprecision(8) << d;
-        std::cout << oss.str() << std::endl;
+        std::cout << std::setprecision(9);
+        std::cout  << f << "f" << std::endl;
     }
 }
-// -inff, +inff, nanf. 
-// -inf, +inf, nan.
+
+void printDouble(double d)
+{
+    std::cout << "double: ";
+    if (std::floor(d) == d)
+        std::cout << std::fixed << std::setprecision(1) << d;
+    else
+        std::cout << std::setprecision(9) << d;
+}
+
+void printConversions(double d)
+{
+    printChar(d);
+    printInt(d);
+    printFloat(d);
+    printDouble(d);
+}
 
 bool handleLiterals(const std::string &literal)
 {
@@ -101,12 +97,6 @@ bool handleLiterals(const std::string &literal)
     }
     return true;
 }
-
-// 42abc or 12.3.4 or "42 " or 1.  <===   i need to fix them
-// +12 , -12 correct
-// 42a nooooo   / 42ff
-//   and 42f
-// -.45
 
 bool checkValid(const std::string &literal) {
     size_t i = 0;
@@ -132,10 +122,8 @@ bool checkValid(const std::string &literal) {
 }
 void ScalarConverter::convert(std::string literal)
 {
-    // if (literal.empty())
-    //     return;
 
-    if (literal.length() == 1 && !std::isdigit(literal[0])) {
+    if (literal.length() <= 1 && !std::isdigit(literal[0])) {
         printConversions(static_cast<double>(literal[0]));
         return;
     }

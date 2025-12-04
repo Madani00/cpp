@@ -9,7 +9,6 @@
 #include <cctype>
 
 
-
 class ScalarConverter
 {
     private:

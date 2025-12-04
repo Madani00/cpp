@@ -38,21 +38,21 @@ void identify(Base* p) {
 
 void identify(Base& p) {
     try {
-        A a = dynamic_cast<A&>(p);
+        (void)dynamic_cast<A&>(p);
         std::cout << "type of the object pointed to by p: A" << std::endl;
         return ;
     }
     catch(const std::exception& e) { }
 
     try {
-        B b = dynamic_cast<B&>(p);
+        (void)dynamic_cast<B&>(p);
         std::cout << "type of the object pointed to by p: B" << std::endl;
         return ;
     }
     catch(const std::exception& e) { }
 
     try {
-        C c = dynamic_cast<C&>(p);
+        (void)dynamic_cast<C&>(p);
         std::cout << "type of the object pointed to by p: C" << std::endl;
         return ;
     }
@@ -73,14 +73,6 @@ int main() {
 
     std::cout << std::string(40, '=')  << std::endl;
     identify(NULL);
-
-    std::cout << std::string(40, '=')  << std::endl;
-
-    // Base d;
-    // identify(d);
-
-    A a;
-    identify(a);
 
     delete base;
 }

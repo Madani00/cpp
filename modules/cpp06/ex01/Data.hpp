@@ -1,7 +1,6 @@
 #pragma once
 
-class Data
+struct Data
 {
-    public:
-        int Id;
+    int Id;
 };

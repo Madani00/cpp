@@ -23,7 +23,7 @@ Serializer &Serializer::operator=(const Serializer& other)
     }
     return *this;
 }
-// dynamic_cast and reinterpret_cast and static_cast here
+
 uintptr_t Serializer::serialize(Data* ptr)
 {
     return reinterpret_cast<uintptr_t>(ptr);
