@@ -6,7 +6,7 @@ class Shape {
 public:
     virtual void draw() = 0;  // pure virtual
     void move() { cout << "Shape moved!\n"; }  // normal function
-};
+}; // hi
 
 // abstract
 class Circle : public Shape {

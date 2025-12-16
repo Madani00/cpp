@@ -1,7 +1,6 @@
 #pragma once
 
 template <typename TYPE>
-
 void swap(TYPE &a, TYPE &b)
 {
     TYPE temp;
@@ -11,13 +10,13 @@ void swap(TYPE &a, TYPE &b)
 }
 
 template <typename TYPE>
-TYPE min(TYPE a, TYPE b)
+TYPE min(const TYPE &a, const TYPE &b) // do not make copy
 {
     return (a < b) ? a : b;
 }
 
 template <class TYPE>
-TYPE max(TYPE a, TYPE b)
+TYPE max(const TYPE &a, const TYPE &b)
 {
     return (a > b) ? a : b;
 }

@@ -21,23 +21,16 @@ class Array {
         unsigned int size() const;
 };
 
-// Template implementations must be in the header file
-
 template <typename TYPE>
-Array<TYPE>::Array()
+Array<TYPE>::Array() : array(NULL), sizeArray(0)
 {
-    array = NULL;
-    sizeArray = 0;
 }
 
 template <typename TYPE>
-Array<TYPE>::Array(unsigned int n)
+Array<TYPE>::Array(unsigned int n) : array(new TYPE[n]), sizeArray(n)
 {
-    array = new TYPE[n];
-    sizeArray = n;
-
-    for (unsigned int i = 0; i < n; i++) // it gives error when working with std::string
-        array[i] = TYPE(); // NULL gives me an error if i do copy constructor on a default object
+    for (unsigned int i = 0; i < n; i++)
+        array[i] = TYPE();
 }
 
 template <typename TYPE>
@@ -80,6 +73,7 @@ template <typename TYPE>
 TYPE Array<TYPE>::operator [](unsigned int idx) const {
     if (idx < 0 || idx >= sizeArray)
         throw std::out_of_range("Index out of bounds");
+    std::cout << "const is here hhaaaa"<<std::endl;
     return array[idx];
 }
 
