@@ -1,5 +1,5 @@
-NAME     = easyfind
-SRCS     = main.cpp
+NAME     = span
+SRCS     = main.cpp Span.cpp
 OBJS     = $(SRCS:.cpp=.o)
 CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
