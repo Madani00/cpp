@@ -17,12 +17,13 @@ void simple_test()
     catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
+    
 
 }
 
 int main()
 {
-    unsigned int N = 10000;
+    unsigned int N = 10;
     srand(time(0));
     Span sp(N);
     // std::list<int> random_numbers;
