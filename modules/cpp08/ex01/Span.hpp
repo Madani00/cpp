@@ -41,6 +41,6 @@ void Span::addMultiple(Iterator begin, Iterator end) {
         begin++;
     }
 
-    // you can also do this
-    this->array.insert(array.end(), begin, end);
+    // // you can also do this
+    // this->array.insert(array.end(), begin, end);
 }

@@ -12,7 +12,7 @@ int main() {
 
   // it removes duplicates , also sortes numbers
   cout << "Numbers are: ";
-  for(auto &num: numbers) {
+  for(int num: numbers) {
     cout << num << ", ";
   }
 

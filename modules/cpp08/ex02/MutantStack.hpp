@@ -11,7 +11,7 @@ class MutantStack : public std::stack<TYPE>{
 
     public:
         typedef typename std::stack<TYPE>::container_type::iterator iterator;
-
+        typedef typename std::stack<TYPE>::container_type::const_iterator const_iterator;
         // Orthodox Canonical Form
         MutantStack();
         MutantStack(const MutantStack& other); 
@@ -20,6 +20,8 @@ class MutantStack : public std::stack<TYPE>{
 
         iterator begin();
         iterator end();
+        const_iterator begin() const;
+        const_iterator end() const;
     
 };
 
@@ -54,6 +56,18 @@ typename MutantStack<TYPE>::iterator MutantStack<TYPE>::begin()
 
 template <typename TYPE>
 typename MutantStack<TYPE>::iterator MutantStack<TYPE>::end() 
+{ 
+    return this->c.end(); 
+}
+
+template <typename TYPE>
+typename  MutantStack<TYPE>::const_iterator MutantStack<TYPE>::begin() const
+{ 
+    return this->c.begin(); 
+}
+
+template <typename TYPE>
+typename MutantStack<TYPE>::const_iterator MutantStack<TYPE>::end() const
 { 
     return this->c.end(); 
 }

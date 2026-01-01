@@ -55,6 +55,7 @@ unsigned int Span::shortestSpan() {
     return min;
 }
 
+// better if you use std::min and std::max
 unsigned int Span::longestSpan() {
     
     if (this->array.size() < 2) {

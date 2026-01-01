@@ -9,6 +9,7 @@ void printCopyStack(std::stack<int> stk) {
 }
 
 void iteratorTest() {
+    std::cout << "\n--- iterator Test ---" << std::endl;
 
     MutantStack<int> m;
 
@@ -27,6 +28,8 @@ void iteratorTest() {
 }
 
 void basicTest() {
+
+    std::cout << "\n--- Basic Test ---" << std::endl;
     MutantStack<int> mstack;
 
     mstack.push(1);
@@ -46,12 +49,14 @@ void basicTest() {
 
     while (it != ite) {
         std::cout << *it << std::endl;
+
         ++it;
     }
     std::cout << std::endl;
 }
 
 void copyTest() {
+    std::cout << "\n--- copy Constructor Test ---" << std::endl;
     MutantStack<int> original;
 
     original.push(100);
@@ -67,6 +72,8 @@ void copyTest() {
 }   
 
 void listTest() {
+    std::cout << "\n--- List Test ---" << std::endl;
+
     MutantStack<int> m;
     std::list<int> l;
 
@@ -88,10 +95,32 @@ void listTest() {
      std::cout << std::endl;
 }
 
+void iteratorConst() {
+    std::cout << "\n--- Const iterator Test ---" << std::endl;
+    MutantStack<int> m;
+
+    m.push(10);
+    m.push(20);
+    m.push(30);
+
+    const MutantStack<int> cm(m);
+
+    MutantStack<int>::const_iterator it = cm.begin();
+    MutantStack<int>::const_iterator ite = cm.end();
+
+    while (it != ite)
+    {
+        std::cout << *it << std::endl;
+        // *it = 13; // it is not allowed
+        ++it;
+    }
+}
+
 int main()
 {
     basicTest();
     iteratorTest();
+    iteratorConst();
     copyTest();
     listTest();
     return 0;
