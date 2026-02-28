@@ -125,7 +125,6 @@ bool BitcoinExchange::getRateForDate(const std::string& date, double& rate) cons
     if (it == _data.begin()) {
         return false;
     }
-
     --it;
     rate = it->second;
     return true;

@@ -1,4 +1,4 @@
-NAME     = easyfind
+NAME     = RPN
 SRCS     = main.cpp
 OBJS     = $(SRCS:.cpp=.o)
 CXX      = c++
