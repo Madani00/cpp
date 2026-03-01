@@ -53,8 +53,8 @@ void RPN::processinput(std::string input) {
             if (myStack.size() < 2)
                 throw std::invalid_argument("Error");
             
-            int nmb1 = myStack.top(); myStack.pop(); // 4
-            int nmb2 = myStack.top(); myStack.pop(); // 2
+            int nmb1 = myStack.top(); myStack.pop();
+            int nmb2 = myStack.top(); myStack.pop();
             if (digit_oper == '+')
                 myStack.push(nmb1 + nmb2);
             else if (digit_oper == '*')
