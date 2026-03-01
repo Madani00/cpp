@@ -6,12 +6,9 @@
 
 #include <fstream>
 #include <sstream>
-#include <exception>
+#include <stdexcept>
 
 class RPN {
-private:
-    
-
 public:
     RPN();
     ~RPN();
