@@ -63,7 +63,7 @@ void RPN::processinput(std::string input) {
                 myStack.push(nmb2 - nmb1);
             else if (digit_oper == '/') {
                 if (nmb1 == 0)
-                throw std::invalid_argument("Error: can't divide by 0");
+                    throw std::invalid_argument("Error: can't divide by 0");
                 myStack.push(nmb2 / nmb1);  
             }
         

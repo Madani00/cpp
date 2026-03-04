@@ -122,21 +122,28 @@ bool checkValid(const std::string &literal) {
 }
 void ScalarConverter::convert(std::string literal)
 {
+    // if (literal.length() <= 1 && !std::isdigit(literal[0])) {
+    //     printConversions(static_cast<double>(literal[0]));
+    //     return;
+    // }
 
-    if (literal.length() <= 1 && !std::isdigit(literal[0])) {
-        printConversions(static_cast<double>(literal[0]));
-        return;
-    }
-
-    else if (handleLiterals(literal))
-        return ;
+    // else if (handleLiterals(literal))
+    //     return ;
 
     std::stringstream str(literal);
-    double dbl;
+    char dbl;
     str >> dbl;
-    if ((str.fail() && literal.size() > 1) || checkValid(literal)) {
-        std::cout << "you provided INVALID input!!" << std::endl;
+
+    if (str.fail()) {
+
+        std::cout<< "dfsds" ;
         return ;
     }
-    printConversions(dbl);
+        
+
+    // if ((str.fail() && literal.size() > 1) || checkValid(literal)) {
+    //     std::cout << "you provided INVALID input!!" << std::endl;
+    //     return ;
+    // }
+    // printConversions(dbl);
 }
