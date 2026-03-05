@@ -24,7 +24,3 @@ PmergeMe &PmergeMe::operator=(const PmergeMe& other)
     }
     return *this;
 }
-
-// void processinput(int digit) {
-    
-// }

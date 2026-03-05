@@ -36,6 +36,75 @@
 
 #include "PmergeMe.hpp"
 
+void Printpair(std::vector<std::pair<int, int> > pairs) {
+    std::vector<std::pair<int, int> >::const_iterator it;
+    for (it = pairs.begin(); it != pairs.end(); ++it) {
+        std::cout << "(" << it->first << ", " << it->second << ") ";
+    }
+}
+
+void PrintVec(std::vector<int> pairs) {
+    std::cout << "Before:   ";
+    std::vector<int>::const_iterator it;
+    for (it = pairs.begin(); it != pairs.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
+
+std::vector<int> extract_biggest(std::vector<std::pair<int, int> > pairs) {
+
+    std::vector<int> main;
+
+    std::vector<std::pair<int, int> >::const_iterator it;
+    for (it = pairs.begin(); it != pairs.end(); it++)
+    {
+        main.push_back(it->second);
+    }
+    return main;
+    
+}
+
+std::vector<int> jacob(std::vector<int> Myvector) {
+
+    if (Myvector.size() <= 1)
+        return Myvector;
+    // store the leftover 
+    // if (Myvector.size() % 2 != 0) {
+    //     int leftover = Myvector[Myvector.size() - 1];
+    //     std::cout << "leftover: " <<  leftover << std::endl;
+    // }
+
+    std::vector<std::pair<int, int> > pairs;
+    for (size_t i = 0; i + 1 < Myvector.size(); i += 2)
+    {
+        if (Myvector[i] < Myvector[i + 1])
+            pairs.push_back(std::make_pair(Myvector[i], Myvector[i + 1]));
+        else
+            pairs.push_back(std::make_pair(Myvector[i + 1], Myvector[i]));
+    }
+
+    // i did recursion here
+    std::vector<int> biggest = extract_biggest(pairs); // larger element in the main 
+    PrintVec(biggest);
+    std::vector<int> sorted_biggest = jacob(biggest);
+
+    std::vector<int> main;
+    std::vector<int> pend;
+
+    for (size_t i = 0; i < sorted_biggest.size(); i++)
+    {
+        main.push_back(sorted_biggest[i]);
+        pend.
+    }
+    
+
+
+    Printpair(pairs);
+
+    return Myvector;
+}
+
 int main(int ac, char *av[]) {
     if (ac > 1) {
         
@@ -56,24 +125,9 @@ int main(int ac, char *av[]) {
             Myvector.push_back(digit);
  
         }
-        // store the leftover 
-        if (Myvector.size() % 2 != 0) {
-
-            int leftover = Myvector[Myvector.size() - 1];
-            std::cout << "leftover: " <<  leftover << std::endl;
-        }
-
-        std::vector<std::pair<int, int> > pairs;
-        for (size_t i = 0; i + 1 < Myvector.size(); i += 2)
-        {
-            pairs.push_back(std::make_pair(Myvector[i], Myvector[i + 1]));
-        }
+        PrintVec(Myvector);
+        jacob(Myvector);
         
-        std::vector<std::pair<int, int> >::const_iterator it;
-        for (it = pairs.begin(); it != pairs.end(); ++it) {
-            // In C++98, 'it' acts like a pointer, so we use '->'
-            std::cout << "(" << it->first << ", " << it->second << ") ";
-        }
     }
     else
         std::cout << "Error!" << std::endl;
