@@ -120,20 +120,34 @@ std::vector<int> extract_biggest(std::vector<std::pair<int, int> > pairs) {
     
 }
 
-std::vector<int> generate_jacob_indices(size_t sizePend) {
-    std::vector<int> jacob_indices;
+std::vector<int> jacob_numbers(int sizePend) {
+    std::vector<int> jacob_numbers;
 
-    jacob_indices.push_back(0);
-    jacob_indices.push_back(1);
+    jacob_numbers.push_back(3);
+    jacob_numbers.push_back(5);
     int nextNm;
     for (int i = 1; i < sizePend; i++)
     {
-        nextNm = jacob_indices[i] + 2 * jacob_indices[i-1];
+        nextNm = jacob_numbers[i] + 2 * jacob_numbers[i-1];
         if (nextNm >= sizePend)
             break;
-        jacob_indices.push_back(nextNm);
+        jacob_numbers.push_back(nextNm);
     }
-    return jacob_indices;
+    return jacob_numbers;
+}
+
+std::vector<int> generate_jacob_indices(int sizePend) {
+    std::vector<int> jacob_order;
+
+    std::vector<int> jacob_numb = jacob_numbers(sizePend);
+
+   
+    for (size_t i = 0; i < jacob_numb.size(); i++)
+    {
+        jacob_order.push_back(jacob_numb[i]);
+        jacob_order.push_back(jacob_numb[i] - 1);
+    }
+    return jacob_order;
 }
 
 
@@ -176,18 +190,48 @@ std::vector<int> jacob(std::vector<int> Myvector) {
         pend.push_back(leftover);
     std::cout << "pend:   ";
     PrintVec(pend);
+
+
+    // test a case to insert 
+    if (main.size() <= 1) {
+        main.push_back(pend[0]);
+    }
+
+    // 
+    std::vector<int> jacob_order = generate_jacob_indices(pend.size());
+
+
     std::cout << std::endl;
     std::vector<int> sorted_biggest = jacob(biggest);
-    // std::cout << "see see see:     " << count << std::endl;
-    // count++;
-    generate_jacob_indices(pend.size)
-
+    
 
 
     Printpair(pairs);
+
+
+
     std::cout << std::endl;
 
     return Myvector;
+}
+
+std::vector<int> generate_jacob_sequence(int sizePend) {
+    std::vector<int> jacob;
+    if (sizePend == 0) return jacob;
+
+    jacob.push_back(2); // We usually start at the 3rd Jacobsthal number (3)
+    jacob.push_back(2); // Initial values to start the sequence logic
+
+    int next = 0;
+    while (true) {
+        next = jacob.back() + 2 * jacob[jacob.size() - 2];
+        if (next >= sizePend) {
+            // No need to go further than the number of elements we have
+            break;
+        }
+        jacob.push_back(next);
+    }
+    return jacob;
 }
 
 int main(int ac, char *av[]) {
@@ -210,9 +254,19 @@ int main(int ac, char *av[]) {
             Myvector.push_back(digit);
  
         }
-        // std::cout << "Before:   ";
-        // PrintVec(Myvector);
+        std::cout << "Before:   ";
+        PrintVec(Myvector);
         jacob(Myvector);
+
+        
+        std::cout << "Jacobsthal number:   ";
+
+        PrintVec(jacob_numbers(10));
+
+        std::cout << "generate jacob edits:   ";
+
+        PrintVec(generate_jacob_indices(10));
+
         std::cout << std::endl;
         
     }
