@@ -44,13 +44,68 @@ void Printpair(std::vector<std::pair<int, int> > pairs) {
 }
 
 void PrintVec(std::vector<int> pairs) {
-    std::cout << "Before:   ";
+    // std::cout << "Before:   ";
     std::vector<int>::const_iterator it;
     for (it = pairs.begin(); it != pairs.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
 }
+
+// FUNCTION PmergeMe(input_data):
+//     IF input_data.size < 2:
+//         RETURN input_data
+
+//     // 1. CREATE PAIRS
+//     pairs = []
+//     extra = NULL
+//     IF input_data.size is odd:
+//         extra = input_data.pop_back()
+
+//     FOR i FROM 0 TO input_data.size STEP 2:
+//         IF input_data[i] < input_data[i+1]:
+//             pairs.add( {small: input_data[i], large: input_data[i+1]} )
+//         ELSE:
+//             pairs.add( {small: input_data[i+1], large: input_data[i]} )
+
+//     // 2. RECURSIVE SORTING
+//     // Extract 'large' elements to sort them
+//     larges_to_sort = [p.large for p in pairs]
+//     sorted_larges = PmergeMe(larges_to_sort)
+
+//     // 3. RE-BUILD RELATIONSHIPS
+//     // Rearrange 'small' elements (pend) to match the new order of 'large' (main)
+//     main_chain = []
+//     pend = []
+//     FOR each val IN sorted_larges:
+//         main_chain.add(val)
+//         // Find the original 'small' partner for this 'large' value
+//         pend.add(find_partner_of(val, pairs))
+    
+//     IF extra is NOT NULL:
+//         pend.add(extra)
+
+//     // 4. INSERTION PHASE
+//     // Always insert first pend element at the start
+//     main_chain.prepend(pend[0]) 
+
+//     // Generate Jacobsthal insertion order (indices: 3, 2, 5, 4, 11, 10, 9...)
+//     insertion_indices = generate_jacob_indices(pend.size)
+
+//     FOR each idx IN insertion_indices:
+//         IF idx >= pend.size: CONTINUE
+        
+//         target = pend[idx]
+        
+//         // BOUNDED BINARY SEARCH
+//         // Limit the search range to the position of its 'large' partner in main_chain
+//         limit_val = find_partner_of_small_in_main(target, pairs)
+//         limit_pos = find_index_in_main(limit_val, main_chain)
+        
+//         pos = binary_search(main_chain, target, 0, limit_pos)
+//         main_chain.insert(pos, target)
+
+//     RETURN main_chain
 
 std::vector<int> extract_biggest(std::vector<std::pair<int, int> > pairs) {
 
@@ -65,15 +120,35 @@ std::vector<int> extract_biggest(std::vector<std::pair<int, int> > pairs) {
     
 }
 
+std::vector<int> generate_jacob_indices(size_t sizePend) {
+    std::vector<int> jacob_indices;
+
+    jacob_indices.push_back(0);
+    jacob_indices.push_back(1);
+    int nextNm;
+    for (int i = 1; i < sizePend; i++)
+    {
+        nextNm = jacob_indices[i] + 2 * jacob_indices[i-1];
+        if (nextNm >= sizePend)
+            break;
+        jacob_indices.push_back(nextNm);
+    }
+    return jacob_indices;
+}
+
+
+
 std::vector<int> jacob(std::vector<int> Myvector) {
 
     if (Myvector.size() <= 1)
         return Myvector;
-    // store the leftover 
-    // if (Myvector.size() % 2 != 0) {
-    //     int leftover = Myvector[Myvector.size() - 1];
-    //     std::cout << "leftover: " <<  leftover << std::endl;
-    // }
+
+    // store the leftover
+    int leftover = -1; 
+    if (Myvector.size() % 2 != 0) {
+        leftover = Myvector[Myvector.size() - 1];
+        std::cout << "leftover: " <<  leftover << std::endl;
+    }
 
     std::vector<std::pair<int, int> > pairs;
     for (size_t i = 0; i + 1 < Myvector.size(); i += 2)
@@ -86,21 +161,31 @@ std::vector<int> jacob(std::vector<int> Myvector) {
 
     // i did recursion here
     std::vector<int> biggest = extract_biggest(pairs); // larger element in the main 
+    std::cout << "biggest:   ";
     PrintVec(biggest);
-    std::vector<int> sorted_biggest = jacob(biggest);
-
-    std::vector<int> main;
+    std::vector<int> main = biggest;
     std::vector<int> pend;
-
-    for (size_t i = 0; i < sorted_biggest.size(); i++)
-    {
-        main.push_back(sorted_biggest[i]);
-        pend.
+    std::cout << "main:   ";
+    PrintVec(main);
+    std::vector<std::pair<int, int> >::const_iterator it;
+    for (it = pairs.begin(); it != pairs.end(); ++it) {
+        pend.push_back(it->first);
     }
-    
+    // add the left number to pend
+    if (leftover >= 0)
+        pend.push_back(leftover);
+    std::cout << "pend:   ";
+    PrintVec(pend);
+    std::cout << std::endl;
+    std::vector<int> sorted_biggest = jacob(biggest);
+    // std::cout << "see see see:     " << count << std::endl;
+    // count++;
+    generate_jacob_indices(pend.size)
+
 
 
     Printpair(pairs);
+    std::cout << std::endl;
 
     return Myvector;
 }
@@ -125,8 +210,10 @@ int main(int ac, char *av[]) {
             Myvector.push_back(digit);
  
         }
-        PrintVec(Myvector);
+        // std::cout << "Before:   ";
+        // PrintVec(Myvector);
         jacob(Myvector);
+        std::cout << std::endl;
         
     }
     else
