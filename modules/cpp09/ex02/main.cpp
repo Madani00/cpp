@@ -30,17 +30,21 @@
 // 3 - Binary Insertion via Jacobsthal Numbers: Insert elements from the Pend into the Main Chain in a very specific order to minimize comparisons.
 // - Order: b3, then b2. Then b5, then b4. Then b11, b10, b9, b8, b7, b6.
 
-// - Binary Search: Use binary search to find the correct spot for each b element in the Main Chain.
-
+// - Binary Search: Use binary search to find the correct spot (i used the std::lower_bound function) for each b element in the Main Chain.
 // - Optimization: When inserting bn​, you only need to search the Main Chain up to the position of its partner an​.
 
 #include "PmergeMe.hpp"
+
+// jacob order [3, 2, 5, 4, 6]
+// The 5th [6] number in pend should be inserted before the 4th number.
+// However, the first number is always inserted first, as it is smaller than the first element in main.
 
 void Printpair(std::vector<std::pair<int, int> > pairs) {
     std::vector<std::pair<int, int> >::const_iterator it;
     for (it = pairs.begin(); it != pairs.end(); ++it) {
         std::cout << "(" << it->first << ", " << it->second << ") ";
     }
+    std::cout << std::endl;
 }
 
 void PrintVec(std::vector<int> pairs) {
@@ -52,60 +56,6 @@ void PrintVec(std::vector<int> pairs) {
     std::cout << std::endl;
 }
 
-// FUNCTION PmergeMe(input_data):
-//     IF input_data.size < 2:
-//         RETURN input_data
-
-//     // 1. CREATE PAIRS
-//     pairs = []
-//     extra = NULL
-//     IF input_data.size is odd:
-//         extra = input_data.pop_back()
-
-//     FOR i FROM 0 TO input_data.size STEP 2:
-//         IF input_data[i] < input_data[i+1]:
-//             pairs.add( {small: input_data[i], large: input_data[i+1]} )
-//         ELSE:
-//             pairs.add( {small: input_data[i+1], large: input_data[i]} )
-
-//     // 2. RECURSIVE SORTING
-//     // Extract 'large' elements to sort them
-//     larges_to_sort = [p.large for p in pairs]
-//     sorted_larges = PmergeMe(larges_to_sort)
-
-//     // 3. RE-BUILD RELATIONSHIPS
-//     // Rearrange 'small' elements (pend) to match the new order of 'large' (main)
-//     main_chain = []
-//     pend = []
-//     FOR each val IN sorted_larges:
-//         main_chain.add(val)
-//         // Find the original 'small' partner for this 'large' value
-//         pend.add(find_partner_of(val, pairs))
-    
-//     IF extra is NOT NULL:
-//         pend.add(extra)
-
-//     // 4. INSERTION PHASE
-//     // Always insert first pend element at the start
-//     main_chain.prepend(pend[0]) 
-
-//     // Generate Jacobsthal insertion order (indices: 3, 2, 5, 4, 11, 10, 9...)
-//     insertion_indices = generate_jacob_indices(pend.size)
-
-//     FOR each idx IN insertion_indices:
-//         IF idx >= pend.size: CONTINUE
-        
-//         target = pend[idx]
-        
-//         // BOUNDED BINARY SEARCH
-//         // Limit the search range to the position of its 'large' partner in main_chain
-//         limit_val = find_partner_of_small_in_main(target, pairs)
-//         limit_pos = find_index_in_main(limit_val, main_chain)
-        
-//         pos = binary_search(main_chain, target, 0, limit_pos)
-//         main_chain.insert(pos, target)
-
-//     RETURN main_chain
 
 std::vector<int> extract_biggest(std::vector<std::pair<int, int> > pairs) {
 
@@ -117,16 +67,36 @@ std::vector<int> extract_biggest(std::vector<std::pair<int, int> > pairs) {
         main.push_back(it->second);
     }
     return main;
-    
 }
 
-std::vector<int> jacob_numbers(int sizePend) {
+std::vector<int> extract_smallest(std::vector<std::pair<int, int> > pairs, std::vector<int> Myvector) {
+
+    std::vector<int> pend;
+    // store the leftover
+    int leftover = -1; 
+    if (Myvector.size() % 2 != 0) {
+        leftover = Myvector[Myvector.size() - 1];
+        std::cout << "leftover: " <<  leftover << std::endl;
+    }
+
+    std::vector<std::pair<int, int> >::const_iterator it;
+    for (it = pairs.begin(); it != pairs.end(); ++it) {
+        pend.push_back(it->first);
+    }
+    // add the left number to pend
+    if (leftover >= 0)
+        pend.push_back(leftover);
+    return pend;
+}
+
+std::vector<int> jacob_numbers(size_t sizePend) {
     std::vector<int> jacob_numbers;
+     if (sizePend == 0) return jacob_numbers;
 
     jacob_numbers.push_back(3);
     jacob_numbers.push_back(5);
-    int nextNm;
-    for (int i = 1; i < sizePend; i++)
+    size_t nextNm;
+    for (size_t i = 1; i < sizePend; i++)
     {
         nextNm = jacob_numbers[i] + 2 * jacob_numbers[i-1];
         if (nextNm >= sizePend)
@@ -136,7 +106,7 @@ std::vector<int> jacob_numbers(int sizePend) {
     return jacob_numbers;
 }
 
-std::vector<int> generate_jacob_indices(int sizePend) {
+std::vector<int> generate_jacob_indices(size_t sizePend) {
     std::vector<int> jacob_order;
 
     std::vector<int> jacob_numb = jacob_numbers(sizePend);
@@ -147,22 +117,31 @@ std::vector<int> generate_jacob_indices(int sizePend) {
         jacob_order.push_back(jacob_numb[i]);
         jacob_order.push_back(jacob_numb[i] - 1);
     }
+
+    // yet still not know why 
+    size_t add_more = sizePend;
+    if (jacob_order.size() + 1 != add_more) {
+        size_t i;
+        for (i = 0; i < jacob_order.size(); i++)
+        {
+            if (add_more == (size_t)jacob_order[i])
+                break;
+        }
+        if (jacob_order.size() == i && add_more > 1)
+            jacob_order.push_back(add_more);
+    }
+
+    
     return jacob_order;
 }
 
 
 
-std::vector<int> jacob(std::vector<int> Myvector) {
+std::vector<int> merge_insertion(std::vector<int> Myvector) {
 
     if (Myvector.size() <= 1)
         return Myvector;
 
-    // store the leftover
-    int leftover = -1; 
-    if (Myvector.size() % 2 != 0) {
-        leftover = Myvector[Myvector.size() - 1];
-        std::cout << "leftover: " <<  leftover << std::endl;
-    }
 
     std::vector<std::pair<int, int> > pairs;
     for (size_t i = 0; i + 1 < Myvector.size(); i += 2)
@@ -172,71 +151,55 @@ std::vector<int> jacob(std::vector<int> Myvector) {
         else
             pairs.push_back(std::make_pair(Myvector[i + 1], Myvector[i]));
     }
+    std::cout << "pairs:   ";
+    Printpair(pairs);
 
-    // i did recursion here
-    std::vector<int> biggest = extract_biggest(pairs); // larger element in the main 
-    std::cout << "biggest:   ";
-    PrintVec(biggest);
-    std::vector<int> main = biggest;
-    std::vector<int> pend;
+    
+    std::vector<int> main = extract_biggest(pairs); // larger element in the main 
+    std::vector<int> pend = extract_smallest(pairs, Myvector); // smaller element in the pend
     std::cout << "main:   ";
     PrintVec(main);
-    std::vector<std::pair<int, int> >::const_iterator it;
-    for (it = pairs.begin(); it != pairs.end(); ++it) {
-        pend.push_back(it->first);
-    }
-    // add the left number to pend
-    if (leftover >= 0)
-        pend.push_back(leftover);
     std::cout << "pend:   ";
     PrintVec(pend);
 
-
-    // test a case to insert 
-    if (main.size() <= 1) {
-        main.push_back(pend[0]);
-    }
-
-    // 
+    // recursive call on the main
     std::vector<int> jacob_order = generate_jacob_indices(pend.size());
-
-
     std::cout << std::endl;
-    std::vector<int> sorted_biggest = jacob(biggest);
+    main = merge_insertion(main);
+        
+    // Always insert first pend element at the start
+    // if (main[0] > pend[0])
+    //     main.insert(main.begin(), pend[0]);
+    // else
+    //     main.insert(main.begin() + 1, pend[0]);
+    main.insert(main.begin(), pend[0]);
     
+    // now do the insertion order of jacob
+    int target;
+    for (size_t i = 0; i < jacob_order.size(); i++)
+    {
+        if (jacob_order[i] - 1  >= (int)pend.size()) // -1 important because the jacob order is 1-based index, but the vector is 0-based index
+            continue;
+        target = pend[jacob_order[i] - 1];
 
+        std::vector<int>::iterator it = std::lower_bound(main.begin(), main.end(), target);
 
-    Printpair(pairs);
+        size_t index = std::distance(main.begin(), it);
+        main.insert(main.begin() + index, target); 
+    }
 
-
+    std::cout << "main after insertion pend:   ";
+    PrintVec(main);
 
     std::cout << std::endl;
 
-    return Myvector;
+    return main;
 }
 
-std::vector<int> generate_jacob_sequence(int sizePend) {
-    std::vector<int> jacob;
-    if (sizePend == 0) return jacob;
 
-    jacob.push_back(2); // We usually start at the 3rd Jacobsthal number (3)
-    jacob.push_back(2); // Initial values to start the sequence logic
-
-    int next = 0;
-    while (true) {
-        next = jacob.back() + 2 * jacob[jacob.size() - 2];
-        if (next >= sizePend) {
-            // No need to go further than the number of elements we have
-            break;
-        }
-        jacob.push_back(next);
-    }
-    return jacob;
-}
 
 int main(int ac, char *av[]) {
     if (ac > 1) {
-        
         PmergeMe obj;
         std::vector<int> Myvector;
 
@@ -254,21 +217,18 @@ int main(int ac, char *av[]) {
             Myvector.push_back(digit);
  
         }
-        std::cout << "Before:   ";
-        PrintVec(Myvector);
-        jacob(Myvector);
+        // std::cout << "Before:   ";
+        // PrintVec(Myvector);
 
-        
-        std::cout << "Jacobsthal number:   ";
+        PrintVec(merge_insertion(Myvector));
+        std::cout << "After:   ";
 
-        PrintVec(jacob_numbers(10));
-
-        std::cout << "generate jacob edits:   ";
-
-        PrintVec(generate_jacob_indices(10));
+        // std::cout << "Jacobsthal number:   ";
+        // PrintVec(jacob_numbers(6));
+        // std::cout << "generate jacob edits:   ";
+        // PrintVec(generate_jacob_indices(6));
 
         std::cout << std::endl;
-        
     }
     else
         std::cout << "Error!" << std::endl;
