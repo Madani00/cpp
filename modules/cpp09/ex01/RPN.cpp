@@ -19,7 +19,7 @@ RPN &RPN::operator=(const RPN& other)
     return *this;
 }
 
-
+// ./RPN  "2  1 -"   = 1
 // ./RPN "1 0  / "    (seg fault)
 // ./RPN "1 +"	Insufficient operands for operator
 // ./RPN "1 0 /"	Division by zero

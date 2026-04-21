@@ -1,20 +1,12 @@
 #pragma once
 
 #include <iostream>
-#include <string>
-#include <cctype>
 #include <deque>
 #include <vector>
-#include <fstream>
-#include <sstream>
 #include <cstdlib>
-#include <utility>
-#include <algorithm>
 #include <iterator>
 #include <sys/time.h>
 #include <iomanip>
-
-#include <list>
 
 
 class PmergeMe {
@@ -28,23 +20,13 @@ public:
     static Container merge_insertion(Container Myvector);
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Template helper functions (same logic as main.cpp, generic over Container)
-// ─────────────────────────────────────────────────────────────────────────────
-
-template <typename Container>
-std::vector<std::pair<int, int> > t_extract_biggest(std::vector<std::pair<int, int> > pairs) {
-    std::vector<int> main_vec;
-    typename std::vector<std::pair<int, int> >::const_iterator it = pairs.begin();
-    for (; it != pairs.end(); ++it)
-        main_vec.push_back(it->second);
-    return pairs; // returns pairs; winners extracted inside merge_insertion
-}
 
 template <typename Container>
 std::vector<int> t_jacob_numbers(size_t sizePend) {
     std::vector<int> jn;
-    if (sizePend == 0) return jn;
+    if (sizePend == 0) 
+        return jn;
+
     jn.push_back(3);
     jn.push_back(5);
     for (size_t i = 1; i < sizePend; i++) {
@@ -108,6 +90,7 @@ Container t_begin_insertion(Container main_chain, Container pend) {
     return main_chain;
 }
 
+
 template <typename Container>
 std::vector<std::pair<int, int> > t_sort_pairs_recursive(std::vector<std::pair<int, int> > pairs) {
     if (pairs.size() <= 1)
@@ -120,6 +103,7 @@ std::vector<std::pair<int, int> > t_sort_pairs_recursive(std::vector<std::pair<i
 
     Container larger_cont(larger_elements.begin(), larger_elements.end());
     Container sorted_cont = PmergeMe::merge_insertion(larger_cont);
+
     std::vector<int> sorted_larger(sorted_cont.begin(), sorted_cont.end());
 
     // Reorder pairs to match sorted larger elements
@@ -141,14 +125,12 @@ Container PmergeMe::merge_insertion(Container Myvector) {
     if (Myvector.size() <= 1)
         return Myvector;
 
-    // Handle leftover element
     int leftover = -1;
     if (Myvector.size() % 2 != 0) {
         leftover = Myvector[Myvector.size() - 1];
         Myvector.pop_back();
     }
 
-    // Create pairs (smaller, larger)
     std::vector<std::pair<int, int> > pairs;
     for (size_t i = 0; i + 1 < Myvector.size(); i += 2) {
         if (Myvector[i] < Myvector[i + 1])
@@ -157,10 +139,10 @@ Container PmergeMe::merge_insertion(Container Myvector) {
             pairs.push_back(std::make_pair(Myvector[i + 1], Myvector[i]));
     }
 
-    // Recursively sort pairs by their larger element, maintaining pairing
+    // resursive sort pairs by their larger element, maintaining pairing
     pairs = t_sort_pairs_recursive<Container>(pairs);
 
-    // Build main_chain and pend from sorted pairs
+    // hna fin kan buildiw main_chain and pend mn sorted pairs
     Container main_chain;
     for (size_t i = 0; i < pairs.size(); i++)
         main_chain.push_back(pairs[i].second);
